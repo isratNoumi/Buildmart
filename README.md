@@ -38,8 +38,8 @@ The health endpoint is available at `http://127.0.0.1:8000/health`.
 backend/app/       FastAPI application and database utilities
 schema.sql         SQLite schema and seed data
 ecommerce.db       Local development database generated from schema.sql
-frontend/          React application (next implementation phase)
+react19/           Partial React 19 frontend (home page only), run with `npm run dev` (Vite, port 5174)
 docs/              Feature documentation
 .env.example       Template for the gitignored .env settings file
-pyproject.toml     uv/Python project configuration
+pyproject.toml     uv/Python project configuration for the ecommerce app (backend + tests)
 ```

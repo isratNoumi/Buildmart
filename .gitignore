@@ -9,7 +9,8 @@ __pycache__/
 .coverage
 htmlcov/
 build/
-
+agents/
+agents/.env
 # Secrets and local settings (keep the template)
 .env
 .env.*
@@ -35,6 +36,9 @@ playwright/.cache/
 e2e/discovery/screenshots/
 e2e/runs/
 
+# Discovery agent run logs and raw evidence (discovery/ baseline itself is kept)
+discovery_runs/
+
 # Private planning and documentation
 plan/
 docs/
@@ -49,3 +53,4 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+root-ca.crt
