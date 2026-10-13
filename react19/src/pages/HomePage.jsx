@@ -4,6 +4,7 @@ import { getCategories, getProducts } from "../api/products";
 import ProductCard from "../components/ProductCard";
 import { useLocation } from "../context/LocationContext";
 
+// React 19 port of the React 16 home page (main: frontend/src/pages/HomePage.jsx).
 export default function HomePage() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
