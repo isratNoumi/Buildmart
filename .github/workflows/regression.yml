@@ -26,6 +26,8 @@ jobs:
           fetch-depth: 0
 
       - uses: astral-sh/setup-uv@v6
+        with:
+          prune-cache: false
 
       - uses: actions/setup-node@v4
         with:
@@ -50,3 +52,7 @@ jobs:
       - name: Server logs
         if: failure()
         run: tail -n 60 "$RUNNER_TEMP"/regression/*.log || true
+
+      - name: Stop servers
+        if: always()
+        run: bash tools/regression-agent/ci/stop.sh

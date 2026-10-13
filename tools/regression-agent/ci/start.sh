@@ -54,7 +54,9 @@ cd "$REPO"
 [ -f .env ] || cp .env.example .env
 uv sync --frozen
 uv run python -m app.init_db
-start "$WORK/backend.log" uv run uvicorn app.main:app --host 127.0.0.1 --port 8000
+# The venv's own Python, not `uv run`: a long-running uv process blocks uv's cache cleanup at the end of the job.
+PYTHON="$REPO/.venv/bin/python"; [ -x "$PYTHON" ] || PYTHON="$REPO/.venv/Scripts/python.exe"
+start "$WORK/backend.log" "$PYTHON" -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 wait_for http://127.0.0.1:8000/health backend "$WORK/backend.log"
 
 serve "$WORK/current/$CURRENT_FRONTEND" 5173 current
