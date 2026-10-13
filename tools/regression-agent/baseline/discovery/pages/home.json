@@ -1,0 +1,44 @@
+{
+  "page_id": "home",
+  "route": "/",
+  "component": "HomePage",
+  "importance": "HIGH",
+  "components": [
+    "SiteHeader",
+    "LocationSelector",
+    "ProductCard"
+  ],
+  "apis": [
+    "GET /api/categories",
+    "GET /api/products",
+    "GET /api/auth/me",
+    "GET /api/cart"
+  ],
+  "elements": [
+    "role=link[name=\"Shop products\"]",
+    "role=link[name=\"View all\"]",
+    "role=button[name=\"Add to cart\"]"
+  ],
+  "dynamic_elements": [
+    "Product price and stock status on product cards",
+    "header cart count"
+  ],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Runtime verified at desktop 1280 (4-column product grid, header 84px) and mobile 390x844 (2-column grid, header stacks to 184px, category nav horizontally scrollable scrollWidth 531 > 390; same controls, no hamburger). Initial render before /api/auth/me resolves briefly shows 'Sign in' and 'Cart (0)' then 'Hi, Sarah' / 'Cart (2)'."
+    },
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "hero 'Power up your next project.', link 'Shop products', 'Shop by category' 10 links, 'Featured products' 8 cards, link 'View all'"
+    }
+  ]
+}

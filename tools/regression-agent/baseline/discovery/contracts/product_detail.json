@@ -1,0 +1,220 @@
+{
+  "page_id": "product_detail",
+  "route": "/products/:id",
+  "component": "ProductDetailPage",
+  "requires_login": false,
+  "version": 1,
+  "status": "draft",
+  "regions": [
+    {
+      "region_id": "ProductDetailPage",
+      "tolerance": "structure",
+      "description": "ProductDetailPage component",
+      "locator": "role=main",
+      "component": "ProductDetailPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "price",
+      "tolerance": "volatile",
+      "description": "Depends on selected location: without location cards show 'Choose a location for pricing' / 'Select a store for availability' and disabled 'Add to cart'; after selecting store 1 (77002) cards show prices (e.g. $159.00 with struck $179.00), stock ('In Stock', 'Only 7 left') and enabled Add to cart.",
+      "locator": "role=article",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Before location: 'Choose a location for pricing', button 'Add to cart' [disabled]. After Update location 77002: '$159.00' + deletion '$179.00', 'In Stock', 'Only 7 left' (Milwaukee)"
+        },
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/products?limit=8&region_id=1&store_id=1",
+          "observation": "refetch after location change"
+        }
+      ]
+    },
+    {
+      "region_id": "stock status",
+      "tolerance": "volatile",
+      "description": "Depends on selected location: without location cards show 'Choose a location for pricing' / 'Select a store for availability' and disabled 'Add to cart'; after selecting store 1 (77002) cards show prices (e.g. $159.00 with struck $179.00), stock ('In Stock', 'Only 7 left') and enabled Add to cart.",
+      "locator": "role=article",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Before location: 'Choose a location for pricing', button 'Add to cart' [disabled]. After Update location 77002: '$159.00' + deletion '$179.00', 'In Stock', 'Only 7 left' (Milwaukee)"
+        },
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/products?limit=8&region_id=1&store_id=1",
+          "observation": "refetch after location change"
+        }
+      ]
+    },
+    {
+      "region_id": "Quantity status",
+      "tolerance": "volatile",
+      "description": null,
+      "locator": null,
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=link[name=\"Back to products\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=link[name=\"Back to products\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=group[name=\"Options\"] >> role=radio",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=group[name=\"Options\"] >> role=radio",
+      "component": "ProductDetailPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "group 'Options' radio '2-Battery Kit' [checked], radio 'Tool Only' on /products/1"
+        }
+      ]
+    },
+    {
+      "region_id": "role=button[name=\"-\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=button[name=\"-\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=button[name=\"+\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=button[name=\"+\"]",
+      "component": "ProductDetailPage / CartPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Quantity stepper: button '-', status 'Quantity', button '+'; '+' disabled at available quantity or when out of stock"
+        }
+      ]
+    },
+    {
+      "region_id": "role=button[name=\"Add to cart\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=button[name=\"Add to cart\"]",
+      "component": "ProductDetailPage / ProductCard",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "'Add to cart' button; disabled with no location; replaced by disabled 'Out of stock' button when stock is 0"
+        }
+      ]
+    },
+    {
+      "region_id": "role=link[name=\"View cart\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=link[name=\"View cart\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    }
+  ],
+  "flows": [
+    "add_to_cart",
+    "view_product"
+  ],
+  "apis": [
+    "GET /api/products/{product_id}",
+    "POST /api/cart/items"
+  ],
+  "samples_seen": [],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/products/1, /products/13, /products/9999 navigated and snapshotted"
+    }
+  ]
+}

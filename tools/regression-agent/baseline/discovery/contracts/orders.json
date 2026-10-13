@@ -1,0 +1,64 @@
+{
+  "page_id": "orders",
+  "route": "/account/orders",
+  "component": "OrdersPage",
+  "requires_login": true,
+  "version": 1,
+  "status": "draft",
+  "regions": [
+    {
+      "region_id": "OrdersPage",
+      "tolerance": "structure",
+      "description": "OrdersPage component",
+      "locator": "role=main",
+      "component": "OrdersPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=link[name=\"← Account\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=link[name=\"← Account\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=link[name=\"Start shopping\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=link[name=\"Start shopping\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    }
+  ],
+  "flows": [],
+  "apis": [
+    "GET /api/orders"
+  ],
+  "samples_seen": [],
+  "evidence": [
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "empty state 'You haven't placed any orders yet.'"
+    }
+  ]
+}

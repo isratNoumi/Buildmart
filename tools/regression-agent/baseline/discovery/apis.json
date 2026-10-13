@@ -1,0 +1,564 @@
+[
+  {
+    "method": "GET",
+    "endpoint": "/api/products/{product_id}",
+    "used_by": [
+      "ProductDetailPage"
+    ],
+    "purpose": "Product detail incl. price/availability for region_id/store_id; 404 for unknown id",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/products/1?region_id=1&store_id=1",
+        "observation": "200 on /products/1; /api/products/9999 404 on /products/9999"
+      },
+      {
+        "type": "openapi",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": "/openapi.json",
+        "observation": "GET /api/products/{product_id} params product_id, region_id, store_id"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/api/products",
+    "used_by": [
+      "HomePage",
+      "ProductListPage"
+    ],
+    "purpose": "List/search/filter products. Params: category, brand, search, min_price, max_price, in_stock, region_id, store_id, page, limit, sort. Response {items,total,page,limit}",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/products?limit=8",
+        "observation": "Home featured products"
+      },
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/products?region_id=1&store_id=1&in_stock=false&sort=relevance&limit=24",
+        "observation": "/products page"
+      },
+      {
+        "type": "openapi",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": "/openapi.json",
+        "observation": "parameter list"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/api/categories",
+    "used_by": [
+      "HomePage"
+    ],
+    "purpose": "List 10 categories (slug used in /category/:slug)",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/categories",
+        "observation": "called on / ; renders 'Shop by category' links"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/api/brands",
+    "used_by": [
+      "ProductListPage"
+    ],
+    "purpose": "List brands for Brand filter",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/brands",
+        "observation": "called on /products and /category/power-tools"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/api/regions/zip/{zip_code}",
+    "used_by": [
+      "LocationSelector"
+    ],
+    "purpose": "Resolve ZIP to region (+store) for location selection; 404 when no store",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/regions/zip/77002",
+        "observation": "200 on Update location; /api/regions/zip/00000 404 -> \"We couldn't find a store for this ZIP code\"; empty zip requested /api/regions/zip/ -> 200 (likely SPA fallback)"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/api/stores",
+    "used_by": [
+      "LocationSelector"
+    ],
+    "purpose": "List stores (5) for 'Available stores' select; optional region_id",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/stores",
+        "observation": "fetched when location popover opened"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/api/regions",
+    "used_by": [],
+    "purpose": "List regions (Atlanta, Dallas, Houston, Phoenix Metro with zip ranges). Not observed called by UI.",
+    "evidence": [
+      {
+        "type": "api_call",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/regions",
+        "observation": "returned 4 regions with zip_start/zip_end"
+      }
+    ],
+    "confidence": "MEDIUM"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/api/cart",
+    "used_by": [
+      "SiteHeader",
+      "CartPage"
+    ],
+    "purpose": "Get cart {id, items[{id,product_id,product_name,variant_id,variant_name,quantity,unit_price,total}], item_count, subtotal}. Params session_id (guest, from localStorage 'build-mart-session'), region_id, store_id, zip_code; bm_session cookie links to user cart. Prices recomputed for passed location and persisted (call without location returned last-priced values).",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/cart?session_id=...&region_id=1&store_id=1&zip_code=77002",
+        "observation": "called on every page load (header Cart count) and /cart"
+      },
+      {
+        "type": "api_call",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/cart",
+        "observation": "with region 4/store 5 unit_price 169 (vs 159 Houston); subsequent call without location returned 169"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/api/cart/items",
+    "used_by": [
+      "ProductDetailPage",
+      "ProductCard"
+    ],
+    "purpose": "Add item {product_id, variant_id?, quantity>=1, region_id?, store_id?, zip_code?}; returns 201",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "POST",
+        "endpoint": "/api/cart/items?session_id=...",
+        "observation": "201 after 'Add to cart' on /products/1 (qty 2) and on hand-tools card; PDP shows 'Product added to cart. View cart', card button text becomes 'Added to cart', header Cart count increments by quantity"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "PATCH",
+    "endpoint": "/api/cart/items/{item_id}",
+    "used_by": [
+      "CartPage"
+    ],
+    "purpose": "Update quantity {quantity>=1, region_id?, store_id?}. 0 -> 422 'Input should be greater than or equal to 1'; above stock (999) -> 409 'Only 49 units are available'",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "PATCH",
+        "endpoint": "/api/cart/items/3?session_id=...",
+        "observation": "200 on Increase click"
+      },
+      {
+        "type": "api_call",
+        "file": null,
+        "line": null,
+        "method": "PATCH",
+        "endpoint": "/api/cart/items/3",
+        "observation": "quantity 0 -> 422; 999 -> 409 {detail:'Only 49 units are available'}"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "DELETE",
+    "endpoint": "/api/cart/items/{item_id}",
+    "used_by": [
+      "CartPage"
+    ],
+    "purpose": "Remove cart item",
+    "evidence": [
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "`/cart/items/${i}?session_id=...` client call"
+      },
+      {
+        "type": "browser_interaction",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "Remove button removed item; state persisted after refresh"
+      }
+    ],
+    "confidence": "MEDIUM"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/api/checkout",
+    "used_by": [
+      "CheckoutPage"
+    ],
+    "purpose": "Checkout data {quote{lines, issues[{code,message,blocking}], subtotal, discount, shipping_cost, tax, total, estimated_date, can_place_order}, addresses, payment_methods, fulfillment_options}. Requires auth cookie. Initial issue FULFILLMENT_REQUIRED 'Choose how you'd like to receive your order.'",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/checkout?store_id=1",
+        "observation": "on /checkout load"
+      },
+      {
+        "type": "api_call",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/checkout?store_id=1",
+        "observation": "response keys quote,addresses,payment_methods,fulfillment_options"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/api/checkout/validate",
+    "used_by": [
+      "CheckoutPage"
+    ],
+    "purpose": "Re-quote for selection {store_id, fulfillment_type, pickup_store_id, shipping_address_id, billing_address_id}; drives totals/tax",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "POST",
+        "endpoint": "/api/checkout/validate",
+        "observation": "200 on load and after each delivery/address/billing change"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/api/fulfillment/options",
+    "used_by": [
+      "CheckoutPage"
+    ],
+    "purpose": "Fulfillment options [{type SHIP_TO_HOME|STORE_PICKUP|DELIVERY, label, available, reason, cost, estimated_date, pickup_stores[{store_id,all_items_available,unavailable_product_ids}]}] for store_id + shipping_address_id",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/fulfillment/options?store_id=1&shipping_address_id=3",
+        "observation": "DELIVERY available:false reason 'Delivery is only available to addresses in the Houston Metro area.' cost 79 (Atlanta address)"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/api/payments/validate",
+    "used_by": [],
+    "purpose": "Validate card (no charge). Returns 200 {valid, brand, last4, errors}. Errors observed: card_number 'Enter a valid card number.', expiry 'This card has expired.', cvv 'Enter the 3-digit security code.'",
+    "evidence": [
+      {
+        "type": "api_call",
+        "file": null,
+        "line": null,
+        "method": "POST",
+        "endpoint": "/api/payments/validate",
+        "observation": "1234 -> valid:false card_number error; 4111..., 2020 -> expired; cvv '1' -> cvv error; valid -> valid:true brand VISA last4 1111. UI caller not observed (bundle literal list does not include it)."
+      }
+    ],
+    "confidence": "MEDIUM"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/api/orders",
+    "used_by": [
+      "CheckoutPage"
+    ],
+    "purpose": "Place order (PlaceOrderRequest). IRREVERSIBLE \u2014 not exercised.",
+    "evidence": [
+      {
+        "type": "openapi",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": "/openapi.json",
+        "observation": "POST /api/orders 'Place Order'"
+      },
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "client path literal \"/orders\" present; exact caller component not verified"
+      }
+    ],
+    "confidence": "LOW"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/api/payments/process",
+    "used_by": [
+      "CheckoutPage"
+    ],
+    "purpose": "Process payment ('Pay'). IRREVERSIBLE \u2014 not exercised.",
+    "evidence": [
+      {
+        "type": "openapi",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": "/openapi.json",
+        "observation": "POST /api/payments/process 'Pay'"
+      },
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "client literal \"/payments/process\"; caller assumed checkout (not runtime-verified)"
+      }
+    ],
+    "confidence": "LOW"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/api/orders",
+    "used_by": [
+      "OrdersPage"
+    ],
+    "purpose": "Paginated order history (page, limit)",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/orders?page=1&limit=10",
+        "observation": "200 on /account/orders (empty)"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/api/orders/{order_id}",
+    "used_by": [
+      "OrderDetailPage",
+      "OrderConfirmationPage"
+    ],
+    "purpose": "Order detail; integer id; 404 unknown, 422 non-integer",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/orders/999999",
+        "observation": "404 from both /account/orders/999999 and /order-confirmation/999999; /api/orders/BM-DOESNOTEXIST 422"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/api/auth/me",
+    "used_by": [
+      "SiteHeader",
+      "RequireAuth"
+    ],
+    "purpose": "Current user from bm_session cookie; drives header 'Hi, <first>' and RequireAuth guard",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/auth/me",
+        "observation": "200 on every page load while signed in"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/api/auth/login",
+    "used_by": [
+      "LoginPage"
+    ],
+    "purpose": "Login {email, password(1-128)}; sets bm_session cookie. 422 invalid email format, 401 wrong credentials",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "POST",
+        "endpoint": "/api/auth/login",
+        "observation": "'not-an-email' -> 422 (UI alert 'Enter a valid email address.'); unknown account -> 401 (alert 'Invalid email or password.'); empty fields -> no request, alert 'Enter your email and password.'"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/api/auth/register",
+    "used_by": [
+      "RegisterPage"
+    ],
+    "purpose": "Register {first_name 1-50, last_name 1-50, email, password 8-128}; 201 signs user in; 409 duplicate email",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "POST",
+        "endpoint": "/api/auth/register",
+        "observation": "existing email -> 409, UI 'An account with this email already exists.'; new email -> 201, redirect to next (/checkout), header 'Hi, Disc'"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/api/auth/logout",
+    "used_by": [
+      "AccountPage"
+    ],
+    "purpose": "Sign out (clears session), 204",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "POST",
+        "endpoint": "/api/auth/logout",
+        "observation": "204 after clicking 'Sign out'; app navigated to / with header 'Sign in', 'Cart (0)'; /api/auth/me then returns 200 {user:null}; /api/checkout returns 401 'Please sign in to continue.'"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "method": "GET/POST/PUT/DELETE",
+    "endpoint": "/api/addresses, /api/addresses/{address_id}",
+    "used_by": [
+      "CheckoutPage"
+    ],
+    "purpose": "Saved addresses CRUD (AddressRequest: type shipping|billing|both, first/last name, address_line1/2, city, state, zip_code, phone, is_default). Checkout AddressForm Save/Edit use POST/PUT (bundle literals \\\"/addresses\\\", `/addresses/${i}`). Not exercised \u2014 site rule forbids changing saved data.",
+    "evidence": [
+      {
+        "type": "openapi",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": "/openapi.json",
+        "observation": "GET/POST /api/addresses, PUT/DELETE /api/addresses/{address_id}"
+      },
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "client literals \"/addresses\" and `/addresses/${i}`"
+      }
+    ],
+    "confidence": "LOW"
+  },
+  {
+    "method": "GET/POST",
+    "endpoint": "/api/payment-methods; GET /api/payments/{transaction_id}; GET /api/categories/{slug}; GET /api/stores/{store_id}; GET /api/products/{product_id}/availability; GET /health",
+    "used_by": [],
+    "purpose": "Backend endpoints present in OpenAPI but no frontend usage observed in network traffic or bundle literal scan (payment methods are delivered via GET /api/checkout payload).",
+    "evidence": [
+      {
+        "type": "openapi",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": "/openapi.json",
+        "observation": "paths listed in openapi.json"
+      },
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "regex scan of client path literals did not include these paths"
+      }
+    ],
+    "confidence": "LOW"
+  }
+]

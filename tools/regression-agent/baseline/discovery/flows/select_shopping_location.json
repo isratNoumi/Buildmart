@@ -1,0 +1,34 @@
+{
+  "flow_id": "select_shopping_location",
+  "name": "Select shopping location (store/ZIP)",
+  "importance": "CRITICAL",
+  "steps": [
+    {
+      "page": "any",
+      "action": "Click 'Shopping location Choose ZIP Select' -> popover, GET /api/stores"
+    },
+    {
+      "page": "any",
+      "action": "Choose store in 'Available stores' (fills ZIP) or type ZIP"
+    },
+    {
+      "page": "any",
+      "action": "Click 'Update location' -> GET /api/regions/zip/{zip}; invalid -> \"We couldn't find a store for this ZIP code\""
+    },
+    {
+      "page": "any",
+      "action": "Success -> header 'Delivering to <zip> Change', prices/stock shown, Add to cart enabled; persisted in localStorage across reloads"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "browser_interaction",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "00000 -> 404 + error; 77002 -> success; 85016 typed -> Phoenix store pricing ($539 workbench, Out of Stock)"
+    }
+  ],
+  "confidence": "HIGH"
+}

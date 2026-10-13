@@ -1,0 +1,225 @@
+{
+  "page_id": "products",
+  "route": "/products",
+  "component": "ProductListPage",
+  "requires_login": false,
+  "version": 1,
+  "status": "draft",
+  "regions": [
+    {
+      "region_id": "ProductListPage",
+      "tolerance": "structure",
+      "description": "ProductListPage component",
+      "locator": "role=main",
+      "component": "ProductListPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "ProductCard",
+      "tolerance": "structure",
+      "description": "ProductCard component",
+      "locator": "role=article",
+      "component": "ProductCard",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "SiteHeader",
+      "tolerance": "structure",
+      "description": "SiteHeader component",
+      "locator": "role=banner",
+      "component": "SiteHeader",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "Product price / stock status per store",
+      "tolerance": "volatile",
+      "description": "Price and available_quantity differ per store/region; status 'Only N left' when quantity low (observed N<=10), 'Out of Stock' when 0 (product 13 Husky Workbench at Phoenix store 5), else 'In Stock'. E.g. product 1: $159 Houston, $164 Atlanta, $169 Phoenix.",
+      "locator": null,
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/products?region_id=X&store_id=Y",
+          "observation": "Response items[].price{price,sale_price,current_price}, availability{available_quantity,in_stock,status}; values vary per store 1-5"
+        }
+      ]
+    },
+    {
+      "region_id": "product count text '<n> products'",
+      "tolerance": "volatile",
+      "description": null,
+      "locator": null,
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=combobox[name=\"Brand\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=combobox[name=\"Brand\"]",
+      "component": "ProductFilters",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "combobox 'Brand' default 'All brands'; options Behr, DeWalt, Everbilt, Husky, Klein Tools, Makita, Milwaukee, Philips, Ryobi, Stanley"
+        }
+      ]
+    },
+    {
+      "region_id": "role=spinbutton[name=\"Min price\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=spinbutton[name=\"Min price\"]",
+      "component": "ProductFilters",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "spinbutton 'Min price'; maps to min_price query param"
+        }
+      ]
+    },
+    {
+      "region_id": "role=spinbutton[name=\"Max price\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=spinbutton[name=\"Max price\"]",
+      "component": "ProductFilters",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "spinbutton 'Max price'; maps to max_price"
+        }
+      ]
+    },
+    {
+      "region_id": "role=checkbox[name=\"In stock\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=checkbox[name=\"In stock\"]",
+      "component": "ProductFilters",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "checking sets in_stock=true in GET /api/products"
+        }
+      ]
+    },
+    {
+      "region_id": "role=combobox[name=\"Sort\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=combobox[name=\"Sort\"]",
+      "component": "ProductFilters",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "options Relevance (default, sort=relevance), Top rated, Price (sort=price, ascending observed)"
+        }
+      ]
+    },
+    {
+      "region_id": "role=link[name=\"Back home\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=link[name=\"Back home\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    }
+  ],
+  "flows": [
+    "filter_sort_products"
+  ],
+  "apis": [
+    "GET /api/products",
+    "GET /api/brands"
+  ],
+  "samples_seen": [],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/products and /products?search=DRILL navigated; while loading heading shows '0 products' before results"
+    }
+  ]
+}

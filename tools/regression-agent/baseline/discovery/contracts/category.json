@@ -1,0 +1,52 @@
+{
+  "page_id": "category",
+  "route": "/category/:slug",
+  "component": "ProductListPage",
+  "requires_login": false,
+  "version": 1,
+  "status": "draft",
+  "regions": [
+    {
+      "region_id": "ProductListPage",
+      "tolerance": "structure",
+      "description": "ProductListPage component",
+      "locator": "role=main",
+      "component": "ProductListPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "ProductCard",
+      "tolerance": "structure",
+      "description": "ProductCard component",
+      "locator": "role=article",
+      "component": "ProductCard",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    }
+  ],
+  "flows": [],
+  "apis": [
+    "GET /api/products",
+    "GET /api/brands"
+  ],
+  "samples_seen": [],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/category/power-tools (3 products), /category/hand-tools (heading briefly 'hand tools' then 'Hand Tools'; Stanley first), /category/no-such-cat (heading 'No Such Cat', empty state)"
+    }
+  ]
+}

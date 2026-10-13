@@ -1,0 +1,17 @@
+{
+  "name": "ProductCard",
+  "file": "/assets/index-CliREoHX.js (bundled)",
+  "parent": "ProductListPage / HomePage",
+  "children": [],
+  "page": null,
+  "evidence": [
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "article: img(alt=name), brand paragraph, link name -> /products/<id>, rating '4.8 / 5 (1248)', price (sale with deletion of list price), stock status, button 'Add to cart' (disabled when no location)"
+    }
+  ]
+}

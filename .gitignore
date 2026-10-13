@@ -11,6 +11,8 @@ htmlcov/
 build/
 agents/
 agents/.env
+# ...except the regression tool's code
+!tools/regression-agent/agents/
 # Secrets and local settings (keep the template)
 .env
 .env.*
@@ -27,6 +29,7 @@ agents/.env
 node_modules/
 dist/
 *.local
+vite.ci.local.mjs
 
 # Playwright and the planned e2e outputs
 test-results/

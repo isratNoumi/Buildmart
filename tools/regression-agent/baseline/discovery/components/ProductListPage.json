@@ -1,0 +1,28 @@
+{
+  "name": "ProductListPage",
+  "file": "/assets/index-CliREoHX.js (minified zh)",
+  "parent": null,
+  "children": [
+    "ProductFilters",
+    "ProductCard"
+  ],
+  "page": "/products",
+  "evidence": [
+    {
+      "type": "browser_interaction",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Brand select -> GET /api/products?brand=klein-tools (2 products). Min 100 + Max 50 -> 0 products, 'No products matched this selection.' (no client validation). Min 100 + In stock + Sort Price -> 6 products ascending by price ($129..$499). Filter state not reflected in URL; header search navigates to /products?search=<q> and resets filters. Results limit=24 per request; catalog total 14, no pagination UI observed."
+    },
+    {
+      "type": "network",
+      "file": null,
+      "line": null,
+      "method": "GET",
+      "endpoint": "/api/brands",
+      "observation": "loaded on page mount to populate Brand select (10 brands)"
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "page_id": "cart",
+  "route": "/cart",
+  "component": "CartPage",
+  "requires_login": false,
+  "version": 1,
+  "status": "draft",
+  "regions": [
+    {
+      "region_id": "CartPage",
+      "tolerance": "structure",
+      "description": "CartPage component",
+      "locator": "role=main",
+      "component": "CartPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "Cart line totals, item count, subtotal and header cart count",
+      "tolerance": "volatile",
+      "description": "Depend on cart contents (sum of quantities) and on the selected store's prices.",
+      "locator": "role=link[name=/^Cart \\(\\d+\\)$/]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Cart (2)->(3)->(4)->(2); subtotal $337.97 -> $357.94 -> $318.00; unit price 159 (Houston) vs 169 (Phoenix) via /api/cart"
+        }
+      ]
+    },
+    {
+      "region_id": "role=button[name=/^Increase quantity of /]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=button[name=/^Increase quantity of /]",
+      "component": "CartPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "button 'Increase quantity of Stanley 25 ft. PowerLock Tape Measure' -> PATCH /api/cart/items/{id}"
+        }
+      ]
+    },
+    {
+      "region_id": "role=button[name=/^Decrease quantity of /]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=button[name=/^Decrease quantity of /]",
+      "component": "CartPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "button 'Decrease quantity of Stanley ...' [disabled] when quantity 1"
+        }
+      ]
+    },
+    {
+      "region_id": "role=button[name=/^Remove /]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=button[name=/^Remove /]",
+      "component": "CartPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "'Remove Stanley 25 ft. PowerLock Tape Measure' removed line item (reversible cart change)"
+        }
+      ]
+    },
+    {
+      "region_id": "role=button[name=\"Proceed to checkout\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=button[name=\"Proceed to checkout\"]",
+      "component": "CartPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "button 'Proceed to checkout' in ORDER SUMMARY"
+        }
+      ]
+    },
+    {
+      "region_id": "role=link[name=\"Continue shopping\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=link[name=\"Continue shopping\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    }
+  ],
+  "flows": [
+    "manage_cart",
+    "checkout_up_to_place_order",
+    "user_registration"
+  ],
+  "apis": [
+    "GET /api/cart",
+    "PATCH /api/cart/items/{item_id}",
+    "DELETE /api/cart/items/{item_id}"
+  ],
+  "samples_seen": [],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/cart navigated, snapshotted, reloaded"
+    }
+  ]
+}

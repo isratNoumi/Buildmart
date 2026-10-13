@@ -1,0 +1,52 @@
+name: Regression check (React 16 vs React 19)
+
+on:
+  push:
+    branches: [migration]
+  pull_request:
+    branches: [migration]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: regression-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      # Only for the throwaway database on the runner; set the secret to override.
+      BUILDMART_DEMO_PASSWORD: ${{ secrets.BUILDMART_DEMO_PASSWORD || 'ci-only-demo-password' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: astral-sh/setup-uv@v6
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Start backend, current build (main) and new build
+        run: bash tools/regression-agent/ci/start.sh
+
+      - name: Compare the pages affected by this change
+        run: bash tools/regression-agent/ci/compare.sh
+        env:
+          BEFORE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+
+      - name: Upload report (open report.html)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-report
+          path: tools/regression-agent/output/parity_runs/
+          if-no-files-found: ignore
+
+      - name: Server logs
+        if: failure()
+        run: tail -n 60 "$RUNNER_TEMP"/regression/*.log || true

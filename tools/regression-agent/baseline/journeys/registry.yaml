@@ -1,0 +1,40 @@
+J001:
+  area: home
+  source_flow_id: search_products
+  status: approved
+J002:
+  area: products
+  source_flow_id: filter_sort_products
+  status: approved
+J003:
+  area: home
+  source_flow_id: add_to_cart
+  status: approved
+J004:
+  area: cart
+  source_flow_id: manage_cart
+  status: approved
+J005:
+  area: cart
+  source_flow_id: checkout_up_to_place_order
+  status: approved
+J006:
+  area: home
+  source_flow_id: user_login
+  status: approved
+J007:
+  area: account
+  source_flow_id: user_logout
+  status: approved
+J008:
+  area: cart
+  source_flow_id: user_registration
+  status: approved
+J009:
+  area: home
+  source_flow_id: select_shopping_location
+  status: approved
+J010:
+  area: home
+  source_flow_id: view_product
+  status: approved

@@ -1,0 +1,34 @@
+{
+  "page_id": "cart",
+  "route": "/cart",
+  "component": "CartPage",
+  "importance": "CRITICAL",
+  "components": [
+    "CartPage"
+  ],
+  "apis": [
+    "GET /api/cart",
+    "PATCH /api/cart/items/{item_id}",
+    "DELETE /api/cart/items/{item_id}"
+  ],
+  "elements": [
+    "role=button[name=/^Increase quantity of /]",
+    "role=button[name=/^Decrease quantity of /]",
+    "role=button[name=/^Remove /]",
+    "role=button[name=\"Proceed to checkout\"]",
+    "role=link[name=\"Continue shopping\"]"
+  ],
+  "dynamic_elements": [
+    "Cart line totals, item count, subtotal and header cart count"
+  ],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/cart navigated, snapshotted, reloaded"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+id: J003
+name: Add product to cart
+area: home
+status: approved
+version: 1
+priority: CRITICAL
+steps:
+- action: navigate
+  target: any
+- action: assert
+  condition: 'Precondition: location selected (else Add to cart disabled)'
+- action: navigate
+  target: /products/:id
+- action: assert
+  condition: Optionally choose variant, set Quantity with +/- (1..available), click
+    'Add to cart'
+- action: assert
+  condition: POST /api/cart/items 201; message 'Product added to cart.' + 'View cart'
+    link; header 'Cart (n)' increments
+- action: navigate
+  target: /products or /category/:slug
+- action: assert
+  condition: Alternatively click card 'Add to cart' (qty 1) -> button shows 'Added
+    to cart'
+assertions:
+- Flow 'Add product to cart' completes without console errors
+provenance:
+  generated_by: test_planner
+  generated_at: '2026-10-12T11:58:12.596091+00:00'
+  source_flow_id: add_to_cart

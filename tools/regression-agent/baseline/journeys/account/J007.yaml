@@ -1,0 +1,22 @@
+id: J007
+name: Sign out
+area: account
+status: approved
+version: 1
+priority: HIGH
+steps:
+- action: navigate
+  target: /account
+- action: assert
+  condition: Click 'Sign out' -> POST /api/auth/logout 204
+- action: navigate
+  target: /
+- action: assert
+  condition: Redirect home; header 'Sign in', 'Cart (0)'; location (localStorage)
+    retained
+assertions:
+- Flow 'Sign out' completes without console errors
+provenance:
+  generated_by: test_planner
+  generated_at: '2026-10-12T11:58:12.596091+00:00'
+  source_flow_id: user_logout

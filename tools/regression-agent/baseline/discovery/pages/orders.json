@@ -1,0 +1,25 @@
+{
+  "page_id": "orders",
+  "route": "/account/orders",
+  "component": "OrdersPage",
+  "importance": "MEDIUM",
+  "components": [],
+  "apis": [
+    "GET /api/orders"
+  ],
+  "elements": [
+    "role=link[name=\"← Account\"]",
+    "role=link[name=\"Start shopping\"]"
+  ],
+  "dynamic_elements": [],
+  "evidence": [
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "empty state 'You haven't placed any orders yet.'"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "flow_id": "filter_sort_products",
+  "name": "Filter and sort product catalog",
+  "importance": "HIGH",
+  "steps": [
+    {
+      "page": "/products",
+      "action": "Select Brand 'Klein Tools' -> 2 products"
+    },
+    {
+      "page": "/products",
+      "action": "Reset Brand 'All brands' -> 14"
+    },
+    {
+      "page": "/products",
+      "action": "Min price 100, Max price 50 -> 0 products, empty state"
+    },
+    {
+      "page": "/products",
+      "action": "Clear max, check In stock, Sort Price -> 6 products ascending"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "network",
+      "file": null,
+      "line": null,
+      "method": "GET",
+      "endpoint": "/api/products",
+      "observation": "each change triggers immediate refetch: brand=klein-tools; min_price=100&max_price=50; in_stock=true; sort=price"
+    }
+  ],
+  "confidence": "HIGH"
+}

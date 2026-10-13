@@ -1,0 +1,39 @@
+{
+  "page_id": "checkout",
+  "route": "/checkout",
+  "component": "CheckoutPage",
+  "importance": "CRITICAL",
+  "components": [
+    "CheckoutPage",
+    "AddressForm",
+    "RequireAuth"
+  ],
+  "apis": [
+    "GET /api/checkout",
+    "POST /api/checkout/validate",
+    "GET /api/fulfillment/options"
+  ],
+  "elements": [
+    "role=group[name=\"Delivery method\"] >> role=radio",
+    "role=group[name=\"Choose a pickup store\"] >> role=radio",
+    "role=group[name=\"Shipping address\"] >> role=radio",
+    "role=button[name=\"+ Add a new address\"]",
+    "role=checkbox[name=\"Billing address is the same as shipping\"]",
+    "role=group[name=\"Payment method\"] >> role=radio",
+    "role=button[name=\"Place order\"]",
+    "role=link[name=\"← Return to cart\"]"
+  ],
+  "dynamic_elements": [
+    "Checkout estimated tax, total and delivery/pickup dates"
+  ],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/checkout reached via 'Proceed to checkout' while signed in; snapshotted"
+    }
+  ]
+}

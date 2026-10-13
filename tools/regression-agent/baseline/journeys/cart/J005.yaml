@@ -1,0 +1,36 @@
+id: J005
+name: Checkout (stop before Place order)
+area: cart
+status: approved
+version: 1
+priority: CRITICAL
+steps:
+- action: navigate
+  target: /cart
+- action: assert
+  condition: 'Precondition: signed in, location selected, cart non-empty. Click ''Proceed
+    to checkout'''
+- action: navigate
+  target: /checkout
+- action: assert
+  condition: 'GET /api/checkout, POST /api/checkout/validate, GET /api/fulfillment/options;
+    defaults: Ship to Home, default address, billing same, default saved card'
+- action: assert
+  condition: Choose delivery method (Ship to Home / Store Pickup -> choose pickup
+    store; Local Delivery disabled outside Houston Metro)
+- action: assert
+  condition: Choose/add shipping address (Add address form validates required fields
+    client-side)
+- action: assert
+  condition: Billing same as shipping or choose billing address
+- action: assert
+  condition: Choose saved card or 'Use a new card' and fill card details
+- action: assert
+  condition: "Review Order summary (subtotal, fulfillment cost, estimated tax, total,\
+    \ date). STOP \u2014 'Place order' not clicked."
+assertions:
+- Flow 'Checkout (stop before Place order)' completes without console errors
+provenance:
+  generated_by: test_planner
+  generated_at: '2026-10-12T11:58:12.596091+00:00'
+  source_flow_id: checkout_up_to_place_order

@@ -1,0 +1,23 @@
+id: J002
+name: Filter and sort product catalog
+area: products
+status: approved
+version: 1
+priority: HIGH
+steps:
+- action: navigate
+  target: /products
+- action: assert
+  condition: Select Brand 'Klein Tools' -> 2 products
+- action: assert
+  condition: Reset Brand 'All brands' -> 14
+- action: assert
+  condition: Min price 100, Max price 50 -> 0 products, empty state
+- action: assert
+  condition: Clear max, check In stock, Sort Price -> 6 products ascending
+assertions:
+- Flow 'Filter and sort product catalog' completes without console errors
+provenance:
+  generated_by: test_planner
+  generated_at: '2026-10-12T11:58:12.596091+00:00'
+  source_flow_id: filter_sort_products

@@ -1,0 +1,22 @@
+{
+  "page_id": "order_confirmation",
+  "route": "/order-confirmation/:orderId",
+  "component": "OrderConfirmationPage",
+  "importance": "MEDIUM",
+  "components": [],
+  "apis": [
+    "GET /api/orders/{order_id}"
+  ],
+  "elements": [],
+  "dynamic_elements": [],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Only not-found state verified; success requires placing an order (forbidden)"
+    }
+  ]
+}

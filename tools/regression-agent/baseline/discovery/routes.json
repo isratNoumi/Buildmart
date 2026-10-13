@@ -1,0 +1,340 @@
+[
+  {
+    "route": "/",
+    "component": "HomePage (minified Ph)",
+    "route_type": "static",
+    "protected": false,
+    "source_file": null,
+    "evidence": [
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "Router: o.jsx(dt,{exact:!0,path:\"/\",component:Ph})"
+      },
+      {
+        "type": "browser_navigation",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "Navigated to / ; title 'Build Mart'; heading 'Power up your next project.', 'Shop by category', 'Featured products' (8 product cards)"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "route": "/products",
+    "component": "ProductListPage (minified zh)",
+    "route_type": "static (query param: search)",
+    "protected": false,
+    "source_file": null,
+    "evidence": [
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "o.jsx(dt,{exact:!0,path:[\"/products\",\"/category/:slug\"],component:zh})"
+      },
+      {
+        "type": "browser_navigation",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "/products shows heading 'Products', '14 products', filters Brand/Min price/Max price/In stock/Sort; /products?search=DRILL shows 3 products"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "route": "/category/:slug",
+    "component": "ProductListPage (minified zh)",
+    "route_type": "dynamic",
+    "protected": false,
+    "source_file": null,
+    "evidence": [
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "path:[\"/products\",\"/category/:slug\"] -> zh"
+      },
+      {
+        "type": "browser_navigation",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "/category/power-tools: heading 'Power Tools', 3 products, GET /api/products?category=power-tools&... . /category/no-such-cat: heading 'No Such Cat' (title-cased slug), '0 products', 'No products matched this selection.' (no 404 page)"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "route": "/products/:id",
+    "component": "ProductDetailPage (minified Uh)",
+    "route_type": "dynamic",
+    "protected": false,
+    "source_file": null,
+    "evidence": [
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "o.jsx(dt,{path:\"/products/:id\",component:Uh})"
+      },
+      {
+        "type": "browser_navigation",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "/products/1 shows 'Loading product...' then detail; /products/9999 -> GET /api/products/9999 404 and 'Product not found'"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "route": "/cart",
+    "component": "CartPage (minified Vp)",
+    "route_type": "static",
+    "protected": false,
+    "source_file": null,
+    "evidence": [
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "o.jsx(dt,{path:\"/cart\",component:Vp}) (not wrapped in auth guard Sr)"
+      },
+      {
+        "type": "browser_navigation",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "/cart shows 'Your cart', line items, Order summary, 'Proceed to checkout', 'Continue shopping'"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "route": "/checkout",
+    "component": "CheckoutPage (minified Th) wrapped in RequireAuth (Sr)",
+    "route_type": "static",
+    "protected": true,
+    "source_file": null,
+    "evidence": [
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "o.jsx(dt,{path:\"/checkout\",children:o.jsx(Sr,{children:o.jsx(Th,{})})}); Sr->Rp: while loading shows 'Checking your account...', if no user redirects to /login?next=<encoded path+search>"
+      },
+      {
+        "type": "browser_navigation",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "Signed-in: 'Proceed to checkout' -> /checkout renders heading 'Checkout'"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "route": "/account",
+    "component": "AccountPage (minified Hp) in RequireAuth",
+    "route_type": "static",
+    "protected": true,
+    "source_file": null,
+    "evidence": [
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "o.jsx(dt,{exact:!0,path:\"/account\",children:o.jsx(Sr,{children:o.jsx(Hp,{})})})"
+      },
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "status 'Checking your account...' then heading 'Hi, Sarah', Profile (name, email), link 'Your orders Track and review past purchases.' -> /account/orders, button 'Sign out'"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "route": "/account/orders",
+    "component": "OrdersPage (minified Fh) in RequireAuth",
+    "route_type": "static",
+    "protected": true,
+    "source_file": null,
+    "evidence": [
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "exact path \"/account/orders\" -> Sr(Fh)"
+      },
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "link '\u2190 Account', heading 'Your orders', empty state 'You haven't placed any orders yet.' + link 'Start shopping' (/products); GET /api/orders?page=1&limit=10 200"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "route": "/account/orders/:orderId",
+    "component": "OrderDetailPage (minified Dh) in RequireAuth",
+    "route_type": "dynamic",
+    "protected": true,
+    "source_file": null,
+    "evidence": [
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "path \"/account/orders/:orderId\" -> Sr(Dh)"
+      },
+      {
+        "type": "browser_navigation",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "/account/orders/999999: GET /api/orders/999999 404 -> '\u2190 All orders', 'Order details', \"We couldn't find that order.\", 'View your orders'. /account/orders/BM-DOESNOTEXIST: 422 -> raw message 'Input should be a valid integer, unable to parse string as an integer' + 'Try again'. Success state not observable (account has no orders; placing orders forbidden)."
+      }
+    ],
+    "confidence": "MEDIUM"
+  },
+  {
+    "route": "/order-confirmation/:orderId",
+    "component": "OrderConfirmationPage (minified Mh) in RequireAuth",
+    "route_type": "dynamic",
+    "protected": true,
+    "source_file": null,
+    "evidence": [
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "path \"/order-confirmation/:orderId\" -> Sr(Mh)"
+      },
+      {
+        "type": "browser_navigation",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "/order-confirmation/999999: GET /api/orders/999999 404 -> 'Order confirmation', \"We couldn't find that order.\", 'View your orders'. Success state not observable without placing an order."
+      }
+    ],
+    "confidence": "MEDIUM"
+  },
+  {
+    "route": "* (not found)",
+    "component": "NotFoundPage (minified Oh)",
+    "route_type": "catch-all",
+    "protected": false,
+    "source_file": null,
+    "evidence": [
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "last route o.jsx(dt,{component:Oh})"
+      },
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "/some/unknown/page: heading 'Page not found', 'The page you're looking for doesn't exist or has moved.', link 'Go to the home page'"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "route": "/login",
+    "component": "LoginPage (minified Rh)",
+    "route_type": "static (query: next)",
+    "protected": false,
+    "source_file": null,
+    "evidence": [
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "o.jsx(dt,{path:\"/login\",component:Rh})"
+      },
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "/login?next=%2Faccount%2Forders%3Fx%3D1: 'WELCOME BACK', heading 'Sign in', textbox 'Email', textbox 'Password', button 'Sign in', link 'Create an account' -> /register?next=<same>"
+      }
+    ],
+    "confidence": "HIGH"
+  },
+  {
+    "route": "/register",
+    "component": "RegisterPage (minified Vh)",
+    "route_type": "static (query: next)",
+    "protected": false,
+    "source_file": null,
+    "evidence": [
+      {
+        "type": "bundle_inspection",
+        "file": "/assets/index-CliREoHX.js",
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "o.jsx(dt,{path:\"/register\",component:Vh}); button text 'Creating account...' while submitting"
+      },
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "'JOIN BUILDMART', heading 'Create an account', textboxes First name, Last name, Email, Password (hint 'At least 8 characters.'), button 'Create account', link 'Sign in' -> /login?next=..."
+      }
+    ],
+    "confidence": "HIGH"
+  }
+]

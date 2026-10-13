@@ -1,0 +1,25 @@
+{
+  "name": "AddressForm",
+  "file": "/assets/index-CliREoHX.js (bundled)",
+  "parent": "CheckoutPage",
+  "children": [],
+  "page": null,
+  "evidence": [
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Fields: First name, Last name, Street address, Apartment, suite, etc. (optional), City, State (combobox Select/AL..WY), ZIP code, Phone, combobox 'Use this address for' (Shipping and billing / Shipping only / Billing only), checkbox 'Make this my default address', buttons 'Save address', 'Cancel'"
+    },
+    {
+      "type": "browser_interaction",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Empty submit: no network request; fields marked invalid with 'This field is required.' (first/last name, street, city), 'Choose a state.', 'Enter a 5-digit ZIP code or ZIP+4.', 'Enter a 10-digit US phone number.' Cancel closes form."
+    }
+  ]
+}

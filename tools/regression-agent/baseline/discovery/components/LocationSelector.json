@@ -1,0 +1,25 @@
+{
+  "name": "LocationSelector",
+  "file": "/assets/index-CliREoHX.js (bundled)",
+  "parent": "SiteHeader",
+  "children": [],
+  "page": null,
+  "evidence": [
+    {
+      "type": "browser_interaction",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Clicking location button expands popover 'Choose your location' with combobox 'Available stores' (5 stores: Atlanta North 30319, Dallas North 75225, Houston Central 77002, Houston West 77063, Phoenix Central 85016), textbox 'ZIP code', button 'Update location'. Selecting a store auto-fills ZIP. Invalid ZIP 00000 -> GET /api/regions/zip/00000 404 and inline message \"We couldn't find a store for this ZIP code\". Empty ZIP + no store -> popover closes, still 'Choose ZIP'. Valid 77002 -> header 'Delivering to 77002 Change', products refetched with region_id=1&store_id=1, prices and stock appear."
+    },
+    {
+      "type": "browser_evaluate",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "localStorage key 'build-mart-location' stores {zip_code, region{id,name...}, store{...}}; 'build-mart-session' stores guest cart session id 'session-<timestamp>'"
+    }
+  ]
+}

@@ -1,0 +1,265 @@
+{
+  "page_id": "checkout",
+  "route": "/checkout",
+  "component": "CheckoutPage",
+  "requires_login": true,
+  "version": 1,
+  "status": "draft",
+  "regions": [
+    {
+      "region_id": "CheckoutPage",
+      "tolerance": "structure",
+      "description": "CheckoutPage component",
+      "locator": "role=main",
+      "component": "CheckoutPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "AddressForm",
+      "tolerance": "structure",
+      "description": "AddressForm component",
+      "locator": null,
+      "component": "AddressForm",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "RequireAuth",
+      "tolerance": "structure",
+      "description": "RequireAuth component",
+      "locator": null,
+      "component": "RequireAuth",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "Checkout estimated tax, total and delivery/pickup dates",
+      "tolerance": "volatile",
+      "description": "Tax depends on fulfillment type/address (Ship to Home Atlanta address $28.30 vs Store Pickup Houston $26.24 on $318 subtotal); dates are relative to current date (pickup Oct 12, 2026 = today, ship Oct 19, 2026, delivery 2026-10-14); Local Delivery availability depends on shipping address region.",
+      "locator": null,
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Estimated tax $28.30 / Total $346.30 (Ship to Home); $26.24 / $344.24 (Store Pickup)"
+        },
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/fulfillment/options",
+          "observation": "estimated_date values"
+        }
+      ]
+    },
+    {
+      "region_id": "role=group[name=\"Delivery method\"] >> role=radio",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=group[name=\"Delivery method\"] >> role=radio",
+      "component": "CheckoutPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "radios 'Ship to Home Arrives by Oct 19, 2026 Free', 'Store Pickup Ready for pickup Oct 12, 2026 Free', 'Local Delivery ... $79.00' [disabled]"
+        }
+      ]
+    },
+    {
+      "region_id": "role=group[name=\"Choose a pickup store\"] >> role=radio",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=group[name=\"Choose a pickup store\"] >> role=radio",
+      "component": "CheckoutPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "after Store Pickup: radios 'BuildMart Houston Central ... All items in stock' [checked], 'BuildMart Houston West ...'"
+        }
+      ]
+    },
+    {
+      "region_id": "role=group[name=\"Shipping address\"] >> role=radio",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=group[name=\"Shipping address\"] >> role=radio",
+      "component": "CheckoutPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "group 'Shipping address' radios for saved addresses (default marked 'Default'), each with button 'Edit'"
+        }
+      ]
+    },
+    {
+      "region_id": "role=button[name=\"+ Add a new address\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=button[name=\"+ Add a new address\"]",
+      "component": "CheckoutPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "opens AddressForm inline"
+        }
+      ]
+    },
+    {
+      "region_id": "role=checkbox[name=\"Billing address is the same as shipping\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=checkbox[name=\"Billing address is the same as shipping\"]",
+      "component": "CheckoutPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "checked by default for Ship to Home; unchecking reveals group 'Billing address'; not shown for Store Pickup"
+        }
+      ]
+    },
+    {
+      "region_id": "role=group[name=\"Payment method\"] >> role=radio",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=group[name=\"Payment method\"] >> role=radio",
+      "component": "CheckoutPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "radios 'VISA •••• 5555Default Expires 08/29' [checked], 'Use a new card Visa, Mastercard, American Express or Discover'"
+        }
+      ]
+    },
+    {
+      "region_id": "role=button[name=\"Place order\"]",
+      "tolerance": "behavior",
+      "description": "Places order and processes payment — IRREVERSIBLE, never clicked during discovery",
+      "locator": "role=button[name=\"Place order\"]",
+      "component": "CheckoutPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "button 'Place order' in Order summary (enabled); bundle client calls \"/orders\" and \"/payments/process\""
+        }
+      ]
+    },
+    {
+      "region_id": "role=link[name=\"← Return to cart\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=link[name=\"← Return to cart\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    }
+  ],
+  "flows": [
+    "checkout_up_to_place_order"
+  ],
+  "apis": [
+    "GET /api/checkout",
+    "POST /api/checkout/validate",
+    "GET /api/fulfillment/options"
+  ],
+  "samples_seen": [],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/checkout reached via 'Proceed to checkout' while signed in; snapshotted"
+    }
+  ]
+}

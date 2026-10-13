@@ -1,0 +1,25 @@
+{
+  "name": "RequireAuth",
+  "file": "/assets/index-CliREoHX.js (minified Sr/Rp)",
+  "parent": null,
+  "children": [],
+  "page": null,
+  "evidence": [
+    {
+      "type": "bundle_inspection",
+      "file": "/assets/index-CliREoHX.js",
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "function Rp: if loading -> <p role=status>Checking your account...</p>; if !user -> Redirect to `/login?next=${encodeURIComponent(pathname+search)}`; wraps /checkout, /order-confirmation/:orderId, /account, /account/orders, /account/orders/:orderId"
+    },
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "status 'Checking your account...' observed on /account load"
+    }
+  ]
+}

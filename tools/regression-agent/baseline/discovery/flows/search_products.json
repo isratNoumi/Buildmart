@@ -1,0 +1,26 @@
+{
+  "flow_id": "search_products",
+  "name": "Search products from header",
+  "importance": "HIGH",
+  "steps": [
+    {
+      "page": "any",
+      "action": "Type query in textbox 'What can we help you find?' and press Enter / click 'Search'"
+    },
+    {
+      "page": "/products?search=<q>",
+      "action": "GET /api/products?search=<q>&region_id&store_id&in_stock=false&sort=relevance&limit=24; results count heading"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "browser_interaction",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "'DRILL' -> 3 products (case-insensitive). Partial 'dril' -> API total 3. '<script>%'' -> 0 products 'No products matched this selection.'. '  drill  ' (padded) -> URL search=++drill++, 0 products (not trimmed). '   ' -> 0 products. Empty -> /products?search= shows all 14. Header textbox not prefilled from URL on direct load."
+    }
+  ],
+  "confidence": "HIGH"
+}

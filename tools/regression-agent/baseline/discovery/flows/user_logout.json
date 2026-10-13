@@ -1,0 +1,26 @@
+{
+  "flow_id": "user_logout",
+  "name": "Sign out",
+  "importance": "HIGH",
+  "steps": [
+    {
+      "page": "/account",
+      "action": "Click 'Sign out' -> POST /api/auth/logout 204"
+    },
+    {
+      "page": "/",
+      "action": "Redirect home; header 'Sign in', 'Cart (0)'; location (localStorage) retained"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "browser_interaction",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "observed after sign out; localStorage still has build-mart-location, build-mart-session"
+    }
+  ],
+  "confidence": "HIGH"
+}

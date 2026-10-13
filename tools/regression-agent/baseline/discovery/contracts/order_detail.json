@@ -1,0 +1,38 @@
+{
+  "page_id": "order_detail",
+  "route": "/account/orders/:orderId",
+  "component": "OrderDetailPage",
+  "requires_login": true,
+  "version": 1,
+  "status": "draft",
+  "regions": [
+    {
+      "region_id": "OrderDetailPage",
+      "tolerance": "structure",
+      "description": "OrderDetailPage component",
+      "locator": "role=main",
+      "component": "OrderDetailPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    }
+  ],
+  "flows": [],
+  "apis": [
+    "GET /api/orders/{order_id}"
+  ],
+  "samples_seen": [],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Only error states verified (404 / 422); success state blocked: no orders exist"
+    }
+  ]
+}

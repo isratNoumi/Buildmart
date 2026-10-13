@@ -1,0 +1,28 @@
+{
+  "page_id": "account",
+  "route": "/account",
+  "component": "AccountPage",
+  "importance": "HIGH",
+  "components": [
+    "RequireAuth"
+  ],
+  "apis": [
+    "GET /api/auth/me",
+    "POST /api/auth/logout"
+  ],
+  "elements": [
+    "role=link[name=/Your orders/]",
+    "role=button[name=\"Sign out\"]"
+  ],
+  "dynamic_elements": [],
+  "evidence": [
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/account: 'Hi, Sarah', Profile, 'Your orders' link, 'Sign out'"
+    }
+  ]
+}

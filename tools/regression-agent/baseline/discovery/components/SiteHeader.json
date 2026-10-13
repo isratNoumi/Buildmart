@@ -1,0 +1,23 @@
+{
+  "name": "SiteHeader",
+  "file": "/assets/index-CliREoHX.js (bundled; no source available)",
+  "parent": null,
+  "children": [
+    "SearchBar",
+    "LocationSelector",
+    "AccountLink",
+    "CartLink",
+    "CategoryNav"
+  ],
+  "page": null,
+  "evidence": [
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "banner contains link 'BUILD MART' (/), textbox 'What can we help you find?', button 'Search', location button ('Shopping location Choose ZIP Select' / 'Delivering to 77002 Change'), link 'Hi, Sarah' (/account) when signed in, link 'Cart (0)' (/cart). navigation: Shop All (/products), Power Tools, Hand Tools, Hardware, Paint, Lawn & Garden (/category/<slug>)"
+    }
+  ]
+}

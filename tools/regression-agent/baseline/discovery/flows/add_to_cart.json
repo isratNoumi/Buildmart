@@ -1,0 +1,34 @@
+{
+  "flow_id": "add_to_cart",
+  "name": "Add product to cart",
+  "importance": "CRITICAL",
+  "steps": [
+    {
+      "page": "any",
+      "action": "Precondition: location selected (else Add to cart disabled)"
+    },
+    {
+      "page": "/products/:id",
+      "action": "Optionally choose variant, set Quantity with +/- (1..available), click 'Add to cart'"
+    },
+    {
+      "page": "/products/:id",
+      "action": "POST /api/cart/items 201; message 'Product added to cart.' + 'View cart' link; header 'Cart (n)' increments"
+    },
+    {
+      "page": "/products or /category/:slug",
+      "action": "Alternatively click card 'Add to cart' (qty 1) -> button shows 'Added to cart'"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "browser_interaction",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Cart (0) -> Cart (2) after adding DeWalt qty 2; Cart (3) after adding Stanley from /category/hand-tools card"
+    }
+  ],
+  "confidence": "HIGH"
+}

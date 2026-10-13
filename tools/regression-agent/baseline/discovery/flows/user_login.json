@@ -1,0 +1,38 @@
+{
+  "flow_id": "user_login",
+  "name": "User login (invalid-input paths verified; success path not executed — no password available)",
+  "importance": "CRITICAL",
+  "steps": [
+    {
+      "page": "protected route",
+      "action": "Unauthenticated visit -> 'Checking your account...' -> redirect /login?next=<path+query>"
+    },
+    {
+      "page": "/login",
+      "action": "Submit empty -> alert 'Enter your email and password.' (no request)"
+    },
+    {
+      "page": "/login",
+      "action": "Invalid email format -> POST 422 -> alert 'Enter a valid email address.'"
+    },
+    {
+      "page": "/login",
+      "action": "Wrong credentials -> POST 401 -> alert 'Invalid email or password.', stays on /login, password retained"
+    },
+    {
+      "page": "/login",
+      "action": "Valid credentials -> expected redirect to next (not verified)"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "browser_interaction",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/account/orders?x=1 -> /login?next=%2Faccount%2Forders%3Fx%3D1; alerts observed as listed"
+    }
+  ],
+  "confidence": "MEDIUM"
+}

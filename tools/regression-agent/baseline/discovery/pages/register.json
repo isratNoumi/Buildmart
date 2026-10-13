@@ -1,0 +1,29 @@
+{
+  "page_id": "register",
+  "route": "/register",
+  "component": "RegisterPage",
+  "importance": "HIGH",
+  "components": [],
+  "apis": [
+    "POST /api/auth/register"
+  ],
+  "elements": [
+    "role=textbox[name=\"First name\"]",
+    "role=textbox[name=\"Last name\"]",
+    "role=textbox[name=\"Email\"]",
+    "role=textbox[name=\"Password\"]",
+    "role=button[name=\"Create account\"]",
+    "role=link[name=\"Sign in\"]"
+  ],
+  "dynamic_elements": [],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/register?next=%2Fcheckout navigated and snapshotted"
+    }
+  ]
+}

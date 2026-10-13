@@ -1,0 +1,33 @@
+{
+  "name": "ProductDetailPage",
+  "file": "/assets/index-CliREoHX.js (minified Uh)",
+  "parent": null,
+  "children": [],
+  "page": "/products/:id",
+  "evidence": [
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "link 'Back to products', img, brand, h1 name, '4.8 / 5 (1248 reviews)', price (+deletion list price), short description, 'SKU: DW-DCD791D2 | Model: DCD791D2', radiogroup 'Options' (variants e.g. '2-Battery Kit' checked default, 'Tool Only') only for products with variants, stock status, Quantity '-' status '+' , button 'Add to cart'"
+    },
+    {
+      "type": "browser_interaction",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "'-' at 1 keeps 1 (min 1). Product 13 at store 1 (3 available): '+' increments 2,3 then stays 3 and '+' becomes disabled (max = available qty). Selecting variant 'Tool Only' did not change displayed price. Product 13 at Phoenix store (85016): 'Out of Stock', '+' disabled, button 'Out of stock' disabled; price $539.00/$589.00"
+    },
+    {
+      "type": "network",
+      "file": null,
+      "line": null,
+      "method": "GET",
+      "endpoint": "/api/products/1?region_id=1&store_id=1",
+      "observation": "detail fetch includes location params"
+    }
+  ]
+}

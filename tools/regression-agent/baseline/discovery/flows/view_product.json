@@ -1,0 +1,30 @@
+{
+  "flow_id": "view_product",
+  "name": "View product details",
+  "importance": "HIGH",
+  "steps": [
+    {
+      "page": "/products or /",
+      "action": "Click product name link -> /products/:id"
+    },
+    {
+      "page": "/products/:id",
+      "action": "'Loading product...' then details; choose variant; adjust quantity within 1..available"
+    },
+    {
+      "page": "/products/:id",
+      "action": "Unknown id -> 'Product not found'"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/products/1, /13, /9999 observed"
+    }
+  ],
+  "confidence": "HIGH"
+}

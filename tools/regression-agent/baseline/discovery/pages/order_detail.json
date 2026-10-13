@@ -1,0 +1,22 @@
+{
+  "page_id": "order_detail",
+  "route": "/account/orders/:orderId",
+  "component": "OrderDetailPage",
+  "importance": "MEDIUM",
+  "components": [],
+  "apis": [
+    "GET /api/orders/{order_id}"
+  ],
+  "elements": [],
+  "dynamic_elements": [],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Only error states verified (404 / 422); success state blocked: no orders exist"
+    }
+  ]
+}

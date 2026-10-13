@@ -1,0 +1,43 @@
+# Site profile for the deployed Build Mart baseline.
+# Values below come from discovery run 2026-10-12T11-17-45 (output/discovery/ files).
+name: Build Mart
+
+# Tested on every run. Keys named like route parameters fill them: id -> /products/:id, slug -> /category/:slug.
+pinned:
+  - {}                                               # no location: "Choose a location for pricing"
+  - {id: "1", slug: "power-tools", zip: "77002"}     # DeWalt drill, Houston Central (sale price seen)
+
+# Rotated between runs.
+samples:
+  - {id: "13", slug: "hand-tools", zip: "75225"}     # Dallas North
+  - {id: "1", zip: "85016"}                          # Phoenix Central (out-of-stock items seen)
+  - {id: "13", zip: "77063"}                         # Houston West
+  - {slug: "power-tools", zip: "30319"}              # Atlanta North
+
+find_samples:
+  - a product shown on sale (struck-through "was" price)
+  - a product that is out of stock or "Only N left" at the selected store
+  - a product with options (variant choices)
+
+rules:
+  - This is a shared deployed environment. Never submit payment or place an order.
+  - Do not delete or change existing accounts, addresses or saved data.
+  - Create at most one new test account while exploring registration.
+
+# Location picker labels from discovery (components/LocationSelector.json).
+setup:
+  zip:
+    - {action: goto, target: "/"}
+    - {action: click, target: "Shopping location"}
+    - {action: fill, target: "ZIP code", value: "{zip}"}
+    - {action: click, target: "Update location"}
+
+# Labels confirmed by an earlier discovery of this app (/login: Email, Password, "Sign in";
+# header shows "Hi, <first name>" when signed in). Values come from .env.
+login:
+  steps:
+    - {action: goto, target: "/login"}
+    - {action: fill, target: "Email", value: "{env:TEST_USER_EMAIL}"}
+    - {action: fill, target: "Password", value: "{env:TEST_USER_PASSWORD}"}
+    - {action: click, target: "Sign in"}
+  success_text: "Hi, "

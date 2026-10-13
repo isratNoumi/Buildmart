@@ -1,0 +1,98 @@
+[
+  {
+    "element": "Product price and stock status on product cards",
+    "selector": "role=article",
+    "dynamic": true,
+    "reason": "Depends on selected location: without location cards show 'Choose a location for pricing' / 'Select a store for availability' and disabled 'Add to cart'; after selecting store 1 (77002) cards show prices (e.g. $159.00 with struck $179.00), stock ('In Stock', 'Only 7 left') and enabled Add to cart.",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "Before location: 'Choose a location for pricing', button 'Add to cart' [disabled]. After Update location 77002: '$159.00' + deletion '$179.00', 'In Stock', 'Only 7 left' (Milwaukee)"
+      },
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/products?limit=8&region_id=1&store_id=1",
+        "observation": "refetch after location change"
+      }
+    ]
+  },
+  {
+    "element": "Product price / stock status per store",
+    "selector": null,
+    "dynamic": true,
+    "reason": "Price and available_quantity differ per store/region; status 'Only N left' when quantity low (observed N<=10), 'Out of Stock' when 0 (product 13 Husky Workbench at Phoenix store 5), else 'In Stock'. E.g. product 1: $159 Houston, $164 Atlanta, $169 Phoenix.",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/products?region_id=X&store_id=Y",
+        "observation": "Response items[].price{price,sale_price,current_price}, availability{available_quantity,in_stock,status}; values vary per store 1-5"
+      }
+    ]
+  },
+  {
+    "element": "Cart line totals, item count, subtotal and header cart count",
+    "selector": "role=link[name=/^Cart \\(\\d+\\)$/]",
+    "dynamic": true,
+    "reason": "Depend on cart contents (sum of quantities) and on the selected store's prices.",
+    "evidence": [
+      {
+        "type": "browser_interaction",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "Cart (2)->(3)->(4)->(2); subtotal $337.97 -> $357.94 -> $318.00; unit price 159 (Houston) vs 169 (Phoenix) via /api/cart"
+      }
+    ]
+  },
+  {
+    "element": "Checkout estimated tax, total and delivery/pickup dates",
+    "selector": null,
+    "dynamic": true,
+    "reason": "Tax depends on fulfillment type/address (Ship to Home Atlanta address $28.30 vs Store Pickup Houston $26.24 on $318 subtotal); dates are relative to current date (pickup Oct 12, 2026 = today, ship Oct 19, 2026, delivery 2026-10-14); Local Delivery availability depends on shipping address region.",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "Estimated tax $28.30 / Total $346.30 (Ship to Home); $26.24 / $344.24 (Store Pickup)"
+      },
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/fulfillment/options",
+        "observation": "estimated_date values"
+      }
+    ]
+  },
+  {
+    "element": "Checkout shipping cost and progress for new user",
+    "selector": null,
+    "dynamic": true,
+    "reason": "Ship to Home was Free for $318 subtotal but $9.99 for $2.47 subtotal; Local Delivery enabled ($79, Oct 14) when no out-of-region address; new user has no saved addresses ('You don't have a saved address for this yet.') or cards (new card form shown), and progress steps not marked complete.",
+    "evidence": [
+      {
+        "type": "browser_evaluate",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "New account checkout: Subtotal $2.47, Ship to Home $9.99, Estimated tax $0.20, Total $12.66; progress '1 Delivery 2 Billing 3 Payment 4 Review'"
+      }
+    ]
+  }
+]

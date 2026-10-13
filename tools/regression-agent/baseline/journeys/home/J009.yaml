@@ -1,0 +1,25 @@
+id: J009
+name: Select shopping location (store/ZIP)
+area: home
+status: approved
+version: 1
+priority: CRITICAL
+steps:
+- action: navigate
+  target: any
+- action: assert
+  condition: Click 'Shopping location Choose ZIP Select' -> popover, GET /api/stores
+- action: assert
+  condition: Choose store in 'Available stores' (fills ZIP) or type ZIP
+- action: assert
+  condition: Click 'Update location' -> GET /api/regions/zip/{zip}; invalid -> "We
+    couldn't find a store for this ZIP code"
+- action: assert
+  condition: Success -> header 'Delivering to <zip> Change', prices/stock shown, Add
+    to cart enabled; persisted in localStorage across reloads
+assertions:
+- Flow 'Select shopping location (store/ZIP)' completes without console errors
+provenance:
+  generated_by: test_planner
+  generated_at: '2026-10-12T11:58:12.596091+00:00'
+  source_flow_id: select_shopping_location

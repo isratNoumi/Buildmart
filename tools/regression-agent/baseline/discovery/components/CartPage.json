@@ -1,0 +1,28 @@
+{
+  "name": "CartPage",
+  "file": "/assets/index-CliREoHX.js (minified Vp)",
+  "parent": null,
+  "children": [
+    "CartLineItem",
+    "OrderSummary"
+  ],
+  "page": "/cart",
+  "evidence": [
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "article per item: img, link name -> /products/<id>, variant name, '$159.00 each', button 'Decrease quantity of <name>' (disabled at 1), status 'Quantity', button 'Increase quantity of <name>', line total strong, button 'Remove <name>'. complementary 'ORDER SUMMARY': '<n> item(s)' + amount, 'Subtotal', button 'Proceed to checkout', link 'Continue shopping' (/products)"
+    },
+    {
+      "type": "browser_interaction",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Increase Stanley 1->2: PATCH /api/cart/items/3 200, line $39.94, summary '4 item(s)' $357.94, header 'Cart (4)'. Decrease then Remove: item removed. Refresh /cart: cart persisted (DeWalt x2, $318.00, Cart (2))."
+    }
+  ]
+}

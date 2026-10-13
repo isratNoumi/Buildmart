@@ -1,0 +1,118 @@
+{
+  "page_id": "register",
+  "route": "/register",
+  "component": "RegisterPage",
+  "requires_login": false,
+  "version": 1,
+  "status": "draft",
+  "regions": [
+    {
+      "region_id": "RegisterPage",
+      "tolerance": "structure",
+      "description": "RegisterPage component",
+      "locator": "role=main",
+      "component": "RegisterPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=textbox[name=\"First name\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=textbox[name=\"First name\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=textbox[name=\"Last name\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=textbox[name=\"Last name\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=textbox[name=\"Email\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=textbox[name=\"Email\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=textbox[name=\"Password\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=textbox[name=\"Password\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=button[name=\"Create account\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=button[name=\"Create account\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=link[name=\"Sign in\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=link[name=\"Sign in\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    }
+  ],
+  "flows": [
+    "user_registration"
+  ],
+  "apis": [
+    "POST /api/auth/register"
+  ],
+  "samples_seen": [],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/register?next=%2Fcheckout navigated and snapshotted"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "flow_id": "checkout_up_to_place_order",
+  "name": "Checkout (stop before Place order)",
+  "importance": "CRITICAL",
+  "steps": [
+    {
+      "page": "/cart",
+      "action": "Precondition: signed in, location selected, cart non-empty. Click 'Proceed to checkout'"
+    },
+    {
+      "page": "/checkout",
+      "action": "GET /api/checkout, POST /api/checkout/validate, GET /api/fulfillment/options; defaults: Ship to Home, default address, billing same, default saved card"
+    },
+    {
+      "page": "/checkout",
+      "action": "Choose delivery method (Ship to Home / Store Pickup -> choose pickup store; Local Delivery disabled outside Houston Metro)"
+    },
+    {
+      "page": "/checkout",
+      "action": "Choose/add shipping address (Add address form validates required fields client-side)"
+    },
+    {
+      "page": "/checkout",
+      "action": "Billing same as shipping or choose billing address"
+    },
+    {
+      "page": "/checkout",
+      "action": "Choose saved card or 'Use a new card' and fill card details"
+    },
+    {
+      "page": "/checkout",
+      "action": "Review Order summary (subtotal, fulfillment cost, estimated tax, total, date). STOP — 'Place order' not clicked."
+    }
+  ],
+  "evidence": [
+    {
+      "type": "browser_interaction",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "All steps traversed in session except Place order; observed totals and section changes as described in CheckoutPage"
+    }
+  ],
+  "confidence": "HIGH"
+}

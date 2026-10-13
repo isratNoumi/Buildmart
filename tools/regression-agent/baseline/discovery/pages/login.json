@@ -1,0 +1,28 @@
+{
+  "page_id": "login",
+  "route": "/login",
+  "component": "LoginPage",
+  "importance": "CRITICAL",
+  "components": [],
+  "apis": [
+    "POST /api/auth/login"
+  ],
+  "elements": [
+    "role=textbox[name=\"Email\"]",
+    "role=textbox[name=\"Password\"]",
+    "role=button[name=\"Sign in\"]",
+    "role=link[name=\"Create an account\"]",
+    "role=alert"
+  ],
+  "dynamic_elements": [],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Reached via RequireAuth redirect after sign-out; snapshotted"
+    }
+  ]
+}

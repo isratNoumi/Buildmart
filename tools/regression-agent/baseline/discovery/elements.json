@@ -1,0 +1,496 @@
+[
+  {
+    "element_type": "button",
+    "text": "Shopping location Choose ZIP Select | Delivering to 77002 Change",
+    "selector": "role=button[name=/^(Shopping location|Delivering to)/]",
+    "component": "LocationSelector",
+    "action": "Toggle location popover",
+    "importance": "CRITICAL",
+    "interaction_class": "READ_ONLY",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "button \"Shopping location Choose ZIP Select\" before location set; button \"Delivering to 77002 Change\" after; [expanded] when open"
+      }
+    ]
+  },
+  {
+    "element_type": "combobox",
+    "text": null,
+    "selector": "role=combobox[name=\"Available stores\"]",
+    "component": "LocationSelector",
+    "action": null,
+    "importance": "CRITICAL",
+    "interaction_class": "STATE_CHANGE",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "combobox 'Available stores' options: 'Select a store or ZIP', 5 BuildMart stores; selecting fills ZIP textbox"
+      }
+    ]
+  },
+  {
+    "element_type": "textbox",
+    "text": null,
+    "selector": "role=textbox[name=\"ZIP code\"]",
+    "component": "LocationSelector",
+    "action": null,
+    "importance": "HIGH",
+    "interaction_class": "STATE_CHANGE",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "textbox 'ZIP code' in location popover; invalid 00000 shows \"We couldn't find a store for this ZIP code\""
+      }
+    ]
+  },
+  {
+    "element_type": "button",
+    "text": null,
+    "selector": "role=button[name=\"Update location\"]",
+    "component": "LocationSelector",
+    "action": null,
+    "importance": "CRITICAL",
+    "interaction_class": "STATE_CHANGE",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": "GET",
+        "endpoint": "/api/regions/zip/77002",
+        "observation": "Click triggers GET /api/regions/zip/{zip}; on 200 products and cart refetched with region_id/store_id"
+      }
+    ]
+  },
+  {
+    "element_type": "textbox",
+    "text": null,
+    "selector": "role=textbox[name=\"What can we help you find?\"]",
+    "component": "SiteHeader",
+    "action": null,
+    "importance": "HIGH",
+    "interaction_class": "READ_ONLY",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "banner textbox 'What can we help you find?' with button 'Search'"
+      }
+    ]
+  },
+  {
+    "element_type": "link",
+    "text": "Cart (0)",
+    "selector": "role=link[name=/^Cart \\(\\d+\\)$/]",
+    "component": "SiteHeader",
+    "action": null,
+    "importance": "HIGH",
+    "interaction_class": "READ_ONLY",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "link 'Cart (0)' -> /cart"
+      }
+    ]
+  },
+  {
+    "element_type": "combobox",
+    "text": null,
+    "selector": "role=combobox[name=\"Brand\"]",
+    "component": "ProductFilters",
+    "action": null,
+    "importance": "HIGH",
+    "interaction_class": "READ_ONLY",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "combobox 'Brand' default 'All brands'; options Behr, DeWalt, Everbilt, Husky, Klein Tools, Makita, Milwaukee, Philips, Ryobi, Stanley"
+      }
+    ]
+  },
+  {
+    "element_type": "spinbutton",
+    "text": null,
+    "selector": "role=spinbutton[name=\"Min price\"]",
+    "component": "ProductFilters",
+    "action": null,
+    "importance": "MEDIUM",
+    "interaction_class": "READ_ONLY",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "spinbutton 'Min price'; maps to min_price query param"
+      }
+    ]
+  },
+  {
+    "element_type": "spinbutton",
+    "text": null,
+    "selector": "role=spinbutton[name=\"Max price\"]",
+    "component": "ProductFilters",
+    "action": null,
+    "importance": "MEDIUM",
+    "interaction_class": "READ_ONLY",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "spinbutton 'Max price'; maps to max_price"
+      }
+    ]
+  },
+  {
+    "element_type": "checkbox",
+    "text": null,
+    "selector": "role=checkbox[name=\"In stock\"]",
+    "component": "ProductFilters",
+    "action": null,
+    "importance": "MEDIUM",
+    "interaction_class": "READ_ONLY",
+    "evidence": [
+      {
+        "type": "network",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "checking sets in_stock=true in GET /api/products"
+      }
+    ]
+  },
+  {
+    "element_type": "combobox",
+    "text": null,
+    "selector": "role=combobox[name=\"Sort\"]",
+    "component": "ProductFilters",
+    "action": null,
+    "importance": "MEDIUM",
+    "interaction_class": "READ_ONLY",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "options Relevance (default, sort=relevance), Top rated, Price (sort=price, ascending observed)"
+      }
+    ]
+  },
+  {
+    "element_type": "radio",
+    "text": "2-Battery Kit / Tool Only",
+    "selector": "role=group[name=\"Options\"] >> role=radio",
+    "component": "ProductDetailPage",
+    "action": null,
+    "importance": "MEDIUM",
+    "interaction_class": "STATE_CHANGE",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "group 'Options' radio '2-Battery Kit' [checked], radio 'Tool Only' on /products/1"
+      }
+    ]
+  },
+  {
+    "element_type": "button",
+    "text": null,
+    "selector": "role=button[name=\"+\"]",
+    "component": "ProductDetailPage / CartPage",
+    "action": null,
+    "importance": "MEDIUM",
+    "interaction_class": "STATE_CHANGE",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "Quantity stepper: button '-', status 'Quantity', button '+'; '+' disabled at available quantity or when out of stock"
+      }
+    ]
+  },
+  {
+    "element_type": "button",
+    "text": null,
+    "selector": "role=button[name=\"Add to cart\"]",
+    "component": "ProductDetailPage / ProductCard",
+    "action": null,
+    "importance": "CRITICAL",
+    "interaction_class": "STATE_CHANGE",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "'Add to cart' button; disabled with no location; replaced by disabled 'Out of stock' button when stock is 0"
+      }
+    ]
+  },
+  {
+    "element_type": "button",
+    "text": null,
+    "selector": "role=button[name=/^Increase quantity of /]",
+    "component": "CartPage",
+    "action": null,
+    "importance": "HIGH",
+    "interaction_class": "STATE_CHANGE",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "button 'Increase quantity of Stanley 25 ft. PowerLock Tape Measure' -> PATCH /api/cart/items/{id}"
+      }
+    ]
+  },
+  {
+    "element_type": "button",
+    "text": null,
+    "selector": "role=button[name=/^Decrease quantity of /]",
+    "component": "CartPage",
+    "action": null,
+    "importance": "HIGH",
+    "interaction_class": "STATE_CHANGE",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "button 'Decrease quantity of Stanley ...' [disabled] when quantity 1"
+      }
+    ]
+  },
+  {
+    "element_type": "button",
+    "text": "Remove",
+    "selector": "role=button[name=/^Remove /]",
+    "component": "CartPage",
+    "action": null,
+    "importance": "HIGH",
+    "interaction_class": "STATE_CHANGE",
+    "evidence": [
+      {
+        "type": "browser_interaction",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "'Remove Stanley 25 ft. PowerLock Tape Measure' removed line item (reversible cart change)"
+      }
+    ]
+  },
+  {
+    "element_type": "button",
+    "text": null,
+    "selector": "role=button[name=\"Proceed to checkout\"]",
+    "component": "CartPage",
+    "action": null,
+    "importance": "CRITICAL",
+    "interaction_class": "READ_ONLY",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "button 'Proceed to checkout' in ORDER SUMMARY"
+      }
+    ]
+  },
+  {
+    "element_type": "radio",
+    "text": "Ship to Home | Store Pickup | Local Delivery",
+    "selector": "role=group[name=\"Delivery method\"] >> role=radio",
+    "component": "CheckoutPage",
+    "action": null,
+    "importance": "CRITICAL",
+    "interaction_class": "STATE_CHANGE",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "radios 'Ship to Home Arrives by Oct 19, 2026 Free', 'Store Pickup Ready for pickup Oct 12, 2026 Free', 'Local Delivery ... $79.00' [disabled]"
+      }
+    ]
+  },
+  {
+    "element_type": "radio",
+    "text": null,
+    "selector": "role=group[name=\"Choose a pickup store\"] >> role=radio",
+    "component": "CheckoutPage",
+    "action": null,
+    "importance": "MEDIUM",
+    "interaction_class": "STATE_CHANGE",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "after Store Pickup: radios 'BuildMart Houston Central ... All items in stock' [checked], 'BuildMart Houston West ...'"
+      }
+    ]
+  },
+  {
+    "element_type": "radio",
+    "text": null,
+    "selector": "role=group[name=\"Shipping address\"] >> role=radio",
+    "component": "CheckoutPage",
+    "action": null,
+    "importance": "HIGH",
+    "interaction_class": "STATE_CHANGE",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "group 'Shipping address' radios for saved addresses (default marked 'Default'), each with button 'Edit'"
+      }
+    ]
+  },
+  {
+    "element_type": "button",
+    "text": null,
+    "selector": "role=button[name=\"+ Add a new address\"]",
+    "component": "CheckoutPage",
+    "action": null,
+    "importance": "MEDIUM",
+    "interaction_class": "READ_ONLY",
+    "evidence": [
+      {
+        "type": "browser_interaction",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "opens AddressForm inline"
+      }
+    ]
+  },
+  {
+    "element_type": "checkbox",
+    "text": null,
+    "selector": "role=checkbox[name=\"Billing address is the same as shipping\"]",
+    "component": "CheckoutPage",
+    "action": null,
+    "importance": "MEDIUM",
+    "interaction_class": "STATE_CHANGE",
+    "evidence": [
+      {
+        "type": "browser_interaction",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "checked by default for Ship to Home; unchecking reveals group 'Billing address'; not shown for Store Pickup"
+      }
+    ]
+  },
+  {
+    "element_type": "radio",
+    "text": "VISA \u2022\u2022\u2022\u2022 5555 Default | Use a new card",
+    "selector": "role=group[name=\"Payment method\"] >> role=radio",
+    "component": "CheckoutPage",
+    "action": null,
+    "importance": "HIGH",
+    "interaction_class": "STATE_CHANGE",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "radios 'VISA \u2022\u2022\u2022\u2022 5555Default Expires 08/29' [checked], 'Use a new card Visa, Mastercard, American Express or Discover'"
+      }
+    ]
+  },
+  {
+    "element_type": "textbox",
+    "text": null,
+    "selector": "role=group[name=\"New card details\"] >> role=textbox[name=\"Card number\"]",
+    "component": "CheckoutPage",
+    "action": null,
+    "importance": "MEDIUM",
+    "interaction_class": "READ_ONLY",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "group 'New card details': textbox 'Name on card', 'Card number', combobox 'Expiry month', 'Expiry year', textbox 'Security code', checkbox 'Save this card for future purchases'"
+      }
+    ]
+  },
+  {
+    "element_type": "button",
+    "text": null,
+    "selector": "role=button[name=\"Place order\"]",
+    "component": "CheckoutPage",
+    "action": "Places order and processes payment \u2014 IRREVERSIBLE, never clicked during discovery",
+    "importance": "CRITICAL",
+    "interaction_class": "EXTERNAL",
+    "evidence": [
+      {
+        "type": "browser_snapshot",
+        "file": null,
+        "line": null,
+        "method": null,
+        "endpoint": null,
+        "observation": "button 'Place order' in Order summary (enabled); bundle client calls \"/orders\" and \"/payments/process\""
+      }
+    ]
+  }
+]

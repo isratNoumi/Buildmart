@@ -1,0 +1,40 @@
+{
+  "name": "CheckoutPage",
+  "file": "/assets/index-CliREoHX.js (minified Th)",
+  "parent": null,
+  "children": [
+    "CheckoutProgress",
+    "DeliverySection",
+    "AddressForm",
+    "BillingSection",
+    "PaymentSection",
+    "CheckoutOrderSummary"
+  ],
+  "page": "/checkout",
+  "evidence": [
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Single page: link '← Return to cart'; list 'Checkout progress' (Delivery/Billing/Payment '(complete)', 4 Review); region '1. Delivery' with group 'Delivery method' radios 'Ship to Home Arrives by Oct 19, 2026 Free' [checked], 'Store Pickup Ready for pickup Oct 12, 2026 Free', 'Local Delivery ... $79.00' [disabled, reason 'Delivery is only available to addresses in the Houston Metro area.']; group 'Shipping address' (2 saved addresses with Edit buttons) + '+ Add a new address'; region '2. Billing address' checkbox 'Billing address is the same as shipping' [checked]; region '3. Payment' group 'Payment method' radios 'VISA •••• 5555Default Expires 08/29', 'Use a new card'; complementary 'Order summary' lines, Subtotal, fulfillment cost, Estimated tax, Total, 'Estimated arrival: <date>', button 'Place order', 'You'll only be charged once your payment is approved.'"
+    },
+    {
+      "type": "browser_interaction",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Store Pickup: shows group 'Choose a pickup store' (Houston Central [checked], Houston West, 'All items in stock'); shipping address hidden; billing checkbox replaced by 'Billing address' group; tax $28.30 -> $26.24, total $346.30 -> $344.24, 'Ready for pickup: Oct 12, 2026'. Unchecking billing-same shows 'Billing address' group (1 address) + add address. 'Use a new card' reveals group 'New card details': Name on card, Card number, Expiry month (MM, 01-12), Expiry year (YYYY, 2026-2041), Security code, checkbox 'Save this card for future purchases', 'We never store your full card number or security code.' Invalid card typed shows no inline error on blur. While address form open, saved address radios and Edit buttons disabled."
+    },
+    {
+      "type": "network",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "On load: GET /api/checkout?store_id=1, POST /api/checkout/validate, GET /api/fulfillment/options?store_id=1&shipping_address_id=3; each selection change re-POSTs /api/checkout/validate; changing shipping address refetches fulfillment options with new shipping_address_id=4"
+    }
+  ]
+}

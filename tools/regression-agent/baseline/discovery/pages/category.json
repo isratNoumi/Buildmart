@@ -1,0 +1,26 @@
+{
+  "page_id": "category",
+  "route": "/category/:slug",
+  "component": "ProductListPage",
+  "importance": "MEDIUM",
+  "components": [
+    "ProductListPage",
+    "ProductCard"
+  ],
+  "apis": [
+    "GET /api/products",
+    "GET /api/brands"
+  ],
+  "elements": [],
+  "dynamic_elements": [],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/category/power-tools (3 products), /category/hand-tools (heading briefly 'hand tools' then 'Hand Tools'; Stanley first), /category/no-such-cat (heading 'No Such Cat', empty state)"
+    }
+  ]
+}

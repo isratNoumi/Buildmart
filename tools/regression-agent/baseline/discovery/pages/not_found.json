@@ -1,0 +1,22 @@
+{
+  "page_id": "not_found",
+  "route": "* (not found)",
+  "component": "NotFoundPage",
+  "importance": "LOW",
+  "components": [],
+  "apis": [],
+  "elements": [
+    "role=link[name=\"Go to the home page\"]"
+  ],
+  "dynamic_elements": [],
+  "evidence": [
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/some/unknown/page -> 'Page not found'"
+    }
+  ]
+}

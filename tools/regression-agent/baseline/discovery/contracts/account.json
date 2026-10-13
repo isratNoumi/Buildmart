@@ -1,0 +1,80 @@
+{
+  "page_id": "account",
+  "route": "/account",
+  "component": "AccountPage",
+  "requires_login": true,
+  "version": 1,
+  "status": "draft",
+  "regions": [
+    {
+      "region_id": "AccountPage",
+      "tolerance": "structure",
+      "description": "AccountPage component",
+      "locator": "role=main",
+      "component": "AccountPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "RequireAuth",
+      "tolerance": "structure",
+      "description": "RequireAuth component",
+      "locator": null,
+      "component": "RequireAuth",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=link[name=/Your orders/]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=link[name=/Your orders/]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=button[name=\"Sign out\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=button[name=\"Sign out\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    }
+  ],
+  "flows": [
+    "user_logout"
+  ],
+  "apis": [
+    "GET /api/auth/me",
+    "POST /api/auth/logout"
+  ],
+  "samples_seen": [],
+  "evidence": [
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/account: 'Hi, Sarah', Profile, 'Your orders' link, 'Sign out'"
+    }
+  ]
+}

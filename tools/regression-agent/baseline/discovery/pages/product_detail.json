@@ -1,0 +1,36 @@
+{
+  "page_id": "product_detail",
+  "route": "/products/:id",
+  "component": "ProductDetailPage",
+  "importance": "CRITICAL",
+  "components": [
+    "ProductDetailPage"
+  ],
+  "apis": [
+    "GET /api/products/{product_id}",
+    "POST /api/cart/items"
+  ],
+  "elements": [
+    "role=link[name=\"Back to products\"]",
+    "role=group[name=\"Options\"] >> role=radio",
+    "role=button[name=\"-\"]",
+    "role=button[name=\"+\"]",
+    "role=button[name=\"Add to cart\"]",
+    "role=link[name=\"View cart\"]"
+  ],
+  "dynamic_elements": [
+    "price",
+    "stock status",
+    "Quantity status"
+  ],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/products/1, /products/13, /products/9999 navigated and snapshotted"
+    }
+  ]
+}

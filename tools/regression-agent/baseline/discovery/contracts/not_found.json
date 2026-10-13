@@ -1,0 +1,49 @@
+{
+  "page_id": "not_found",
+  "route": "* (not found)",
+  "component": "NotFoundPage",
+  "requires_login": false,
+  "version": 1,
+  "status": "draft",
+  "regions": [
+    {
+      "region_id": "NotFoundPage",
+      "tolerance": "structure",
+      "description": "NotFoundPage component",
+      "locator": "role=main",
+      "component": "NotFoundPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=link[name=\"Go to the home page\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=link[name=\"Go to the home page\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    }
+  ],
+  "flows": [],
+  "apis": [],
+  "samples_seen": [],
+  "evidence": [
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/some/unknown/page -> 'Page not found'"
+    }
+  ]
+}

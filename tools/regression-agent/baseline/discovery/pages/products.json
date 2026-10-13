@@ -1,0 +1,37 @@
+{
+  "page_id": "products",
+  "route": "/products",
+  "component": "ProductListPage",
+  "importance": "HIGH",
+  "components": [
+    "ProductListPage",
+    "ProductCard",
+    "SiteHeader"
+  ],
+  "apis": [
+    "GET /api/products",
+    "GET /api/brands"
+  ],
+  "elements": [
+    "role=combobox[name=\"Brand\"]",
+    "role=spinbutton[name=\"Min price\"]",
+    "role=spinbutton[name=\"Max price\"]",
+    "role=checkbox[name=\"In stock\"]",
+    "role=combobox[name=\"Sort\"]",
+    "role=link[name=\"Back home\"]"
+  ],
+  "dynamic_elements": [
+    "Product price / stock status per store",
+    "product count text '<n> products'"
+  ],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "/products and /products?search=DRILL navigated; while loading heading shows '0 products' before results"
+    }
+  ]
+}

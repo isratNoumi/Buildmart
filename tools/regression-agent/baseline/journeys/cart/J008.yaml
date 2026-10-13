@@ -1,0 +1,33 @@
+id: J008
+name: Register new account (guest cart -> checkout)
+area: cart
+status: approved
+version: 1
+priority: HIGH
+steps:
+- action: navigate
+  target: /cart
+- action: assert
+  condition: Guest with item clicks 'Proceed to checkout' -> /login?next=%2Fcheckout
+- action: navigate
+  target: /login
+- action: assert
+  condition: Click 'Create an account' -> /register?next=%2Fcheckout
+- action: navigate
+  target: /register
+- action: assert
+  condition: Empty submit -> 'Enter your first name.', 'Enter your last name.', 'Enter
+    a valid email address.', 'Use at least 8 characters.' (no request)
+- action: assert
+  condition: Password 'short' -> 'Use at least 8 characters.' (no request)
+- action: assert
+  condition: Existing email -> 409 'An account with this email already exists.'
+- action: assert
+  condition: Unique email -> 201, auto sign-in, redirect /checkout, header 'Hi, <first>',
+    guest cart retained (Cart (1))
+assertions:
+- Flow 'Register new account (guest cart -> checkout)' completes without console errors
+provenance:
+  generated_by: test_planner
+  generated_at: '2026-10-12T11:58:12.596091+00:00'
+  source_flow_id: user_registration

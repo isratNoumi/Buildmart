@@ -1,0 +1,42 @@
+{
+  "flow_id": "user_registration",
+  "name": "Register new account (guest cart -> checkout)",
+  "importance": "HIGH",
+  "steps": [
+    {
+      "page": "/cart",
+      "action": "Guest with item clicks 'Proceed to checkout' -> /login?next=%2Fcheckout"
+    },
+    {
+      "page": "/login",
+      "action": "Click 'Create an account' -> /register?next=%2Fcheckout"
+    },
+    {
+      "page": "/register",
+      "action": "Empty submit -> 'Enter your first name.', 'Enter your last name.', 'Enter a valid email address.', 'Use at least 8 characters.' (no request)"
+    },
+    {
+      "page": "/register",
+      "action": "Password 'short' -> 'Use at least 8 characters.' (no request)"
+    },
+    {
+      "page": "/register",
+      "action": "Existing email -> 409 'An account with this email already exists.'"
+    },
+    {
+      "page": "/register",
+      "action": "Unique email -> 201, auto sign-in, redirect /checkout, header 'Hi, <first>', guest cart retained (Cart (1))"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "browser_interaction",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "One test account created (discovery.agent.20261012@example.com); all messages observed"
+    }
+  ],
+  "confidence": "HIGH"
+}

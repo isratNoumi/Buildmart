@@ -1,0 +1,106 @@
+{
+  "page_id": "login",
+  "route": "/login",
+  "component": "LoginPage",
+  "requires_login": false,
+  "version": 1,
+  "status": "draft",
+  "regions": [
+    {
+      "region_id": "LoginPage",
+      "tolerance": "structure",
+      "description": "LoginPage component",
+      "locator": "role=main",
+      "component": "LoginPage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=textbox[name=\"Email\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=textbox[name=\"Email\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=textbox[name=\"Password\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=textbox[name=\"Password\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=button[name=\"Sign in\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=button[name=\"Sign in\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=link[name=\"Create an account\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=link[name=\"Create an account\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=alert",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=alert",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    }
+  ],
+  "flows": [
+    "user_login",
+    "user_registration"
+  ],
+  "apis": [
+    "POST /api/auth/login"
+  ],
+  "samples_seen": [],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Reached via RequireAuth redirect after sign-out; snapshotted"
+    }
+  ]
+}

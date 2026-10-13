@@ -1,0 +1,30 @@
+id: J006
+name: "User login (invalid-input paths verified; success path not executed \u2014\
+  \ no password available)"
+area: home
+status: approved
+version: 1
+priority: CRITICAL
+steps:
+- action: navigate
+  target: protected route
+- action: assert
+  condition: Unauthenticated visit -> 'Checking your account...' -> redirect /login?next=<path+query>
+- action: navigate
+  target: /login
+- action: assert
+  condition: Submit empty -> alert 'Enter your email and password.' (no request)
+- action: assert
+  condition: Invalid email format -> POST 422 -> alert 'Enter a valid email address.'
+- action: assert
+  condition: Wrong credentials -> POST 401 -> alert 'Invalid email or password.',
+    stays on /login, password retained
+- action: assert
+  condition: Valid credentials -> expected redirect to next (not verified)
+assertions:
+- "Flow 'User login (invalid-input paths verified; success path not executed \u2014\
+  \ no password available)' completes without console errors"
+provenance:
+  generated_by: test_planner
+  generated_at: '2026-10-12T11:58:12.596091+00:00'
+  source_flow_id: user_login

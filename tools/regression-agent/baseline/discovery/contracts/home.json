@@ -1,0 +1,190 @@
+{
+  "page_id": "home",
+  "route": "/",
+  "component": "HomePage",
+  "requires_login": false,
+  "version": 1,
+  "status": "draft",
+  "regions": [
+    {
+      "region_id": "HomePage",
+      "tolerance": "structure",
+      "description": "HomePage component",
+      "locator": "role=main",
+      "component": "HomePage",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "SiteHeader",
+      "tolerance": "structure",
+      "description": "SiteHeader component",
+      "locator": "role=banner",
+      "component": "SiteHeader",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "LocationSelector",
+      "tolerance": "structure",
+      "description": "LocationSelector component",
+      "locator": null,
+      "component": "LocationSelector",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "ProductCard",
+      "tolerance": "structure",
+      "description": "ProductCard component",
+      "locator": "role=article",
+      "component": "ProductCard",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "Product price and stock status on product cards",
+      "tolerance": "volatile",
+      "description": "Depends on selected location: without location cards show 'Choose a location for pricing' / 'Select a store for availability' and disabled 'Add to cart'; after selecting store 1 (77002) cards show prices (e.g. $159.00 with struck $179.00), stock ('In Stock', 'Only 7 left') and enabled Add to cart.",
+      "locator": "role=article",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Before location: 'Choose a location for pricing', button 'Add to cart' [disabled]. After Update location 77002: '$159.00' + deletion '$179.00', 'In Stock', 'Only 7 left' (Milwaukee)"
+        },
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/products?limit=8&region_id=1&store_id=1",
+          "observation": "refetch after location change"
+        }
+      ]
+    },
+    {
+      "region_id": "header cart count",
+      "tolerance": "volatile",
+      "description": "Depend on cart contents (sum of quantities) and on the selected store's prices.",
+      "locator": "role=link[name=/^Cart \\(\\d+\\)$/]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Cart (2)->(3)->(4)->(2); subtotal $337.97 -> $357.94 -> $318.00; unit price 159 (Houston) vs 169 (Phoenix) via /api/cart"
+        }
+      ]
+    },
+    {
+      "region_id": "role=link[name=\"Shop products\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=link[name=\"Shop products\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=link[name=\"View all\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=link[name=\"View all\"]",
+      "component": null,
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": []
+    },
+    {
+      "region_id": "role=button[name=\"Add to cart\"]",
+      "tolerance": "behavior",
+      "description": null,
+      "locator": "role=button[name=\"Add to cart\"]",
+      "component": "ProductDetailPage / ProductCard",
+      "order": null,
+      "format_rule": null,
+      "expected_outcome": null,
+      "optional": false,
+      "settle_timeout_ms": 5000,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "'Add to cart' button; disabled with no location; replaced by disabled 'Out of stock' button when stock is 0"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    "user_logout"
+  ],
+  "apis": [
+    "GET /api/categories",
+    "GET /api/products",
+    "GET /api/auth/me",
+    "GET /api/cart"
+  ],
+  "samples_seen": [],
+  "evidence": [
+    {
+      "type": "browser_navigation",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Runtime verified at desktop 1280 (4-column product grid, header 84px) and mobile 390x844 (2-column grid, header stacks to 184px, category nav horizontally scrollable scrollWidth 531 > 390; same controls, no hamburger). Initial render before /api/auth/me resolves briefly shows 'Sign in' and 'Cart (0)' then 'Hi, Sarah' / 'Cart (2)'."
+    },
+    {
+      "type": "browser_snapshot",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "hero 'Power up your next project.', link 'Shop products', 'Shop by category' 10 links, 'Featured products' 8 cards, link 'View all'"
+    }
+  ]
+}

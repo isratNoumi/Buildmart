@@ -1,0 +1,2494 @@
+{
+  "application": {},
+  "routes": [
+    {
+      "route": "/",
+      "component": "HomePage (minified Ph)",
+      "route_type": "static",
+      "protected": false,
+      "source_file": null,
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Router: o.jsx(dt,{exact:!0,path:\"/\",component:Ph})"
+        },
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Navigated to / ; title 'Build Mart'; heading 'Power up your next project.', 'Shop by category', 'Featured products' (8 product cards)"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "route": "/products",
+      "component": "ProductListPage (minified zh)",
+      "route_type": "static (query param: search)",
+      "protected": false,
+      "source_file": null,
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "o.jsx(dt,{exact:!0,path:[\"/products\",\"/category/:slug\"],component:zh})"
+        },
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/products shows heading 'Products', '14 products', filters Brand/Min price/Max price/In stock/Sort; /products?search=DRILL shows 3 products"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "route": "/category/:slug",
+      "component": "ProductListPage (minified zh)",
+      "route_type": "dynamic",
+      "protected": false,
+      "source_file": null,
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "path:[\"/products\",\"/category/:slug\"] -> zh"
+        },
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/category/power-tools: heading 'Power Tools', 3 products, GET /api/products?category=power-tools&... . /category/no-such-cat: heading 'No Such Cat' (title-cased slug), '0 products', 'No products matched this selection.' (no 404 page)"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "route": "/products/:id",
+      "component": "ProductDetailPage (minified Uh)",
+      "route_type": "dynamic",
+      "protected": false,
+      "source_file": null,
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "o.jsx(dt,{path:\"/products/:id\",component:Uh})"
+        },
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/products/1 shows 'Loading product...' then detail; /products/9999 -> GET /api/products/9999 404 and 'Product not found'"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "route": "/cart",
+      "component": "CartPage (minified Vp)",
+      "route_type": "static",
+      "protected": false,
+      "source_file": null,
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "o.jsx(dt,{path:\"/cart\",component:Vp}) (not wrapped in auth guard Sr)"
+        },
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/cart shows 'Your cart', line items, Order summary, 'Proceed to checkout', 'Continue shopping'"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "route": "/checkout",
+      "component": "CheckoutPage (minified Th) wrapped in RequireAuth (Sr)",
+      "route_type": "static",
+      "protected": true,
+      "source_file": null,
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "o.jsx(dt,{path:\"/checkout\",children:o.jsx(Sr,{children:o.jsx(Th,{})})}); Sr->Rp: while loading shows 'Checking your account...', if no user redirects to /login?next=<encoded path+search>"
+        },
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Signed-in: 'Proceed to checkout' -> /checkout renders heading 'Checkout'"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "route": "/account",
+      "component": "AccountPage (minified Hp) in RequireAuth",
+      "route_type": "static",
+      "protected": true,
+      "source_file": null,
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "o.jsx(dt,{exact:!0,path:\"/account\",children:o.jsx(Sr,{children:o.jsx(Hp,{})})})"
+        },
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "status 'Checking your account...' then heading 'Hi, Sarah', Profile (name, email), link 'Your orders Track and review past purchases.' -> /account/orders, button 'Sign out'"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "route": "/account/orders",
+      "component": "OrdersPage (minified Fh) in RequireAuth",
+      "route_type": "static",
+      "protected": true,
+      "source_file": null,
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "exact path \"/account/orders\" -> Sr(Fh)"
+        },
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "link '← Account', heading 'Your orders', empty state 'You haven't placed any orders yet.' + link 'Start shopping' (/products); GET /api/orders?page=1&limit=10 200"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "route": "/account/orders/:orderId",
+      "component": "OrderDetailPage (minified Dh) in RequireAuth",
+      "route_type": "dynamic",
+      "protected": true,
+      "source_file": null,
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "path \"/account/orders/:orderId\" -> Sr(Dh)"
+        },
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/account/orders/999999: GET /api/orders/999999 404 -> '← All orders', 'Order details', \"We couldn't find that order.\", 'View your orders'. /account/orders/BM-DOESNOTEXIST: 422 -> raw message 'Input should be a valid integer, unable to parse string as an integer' + 'Try again'. Success state not observable (account has no orders; placing orders forbidden)."
+        }
+      ],
+      "confidence": "MEDIUM"
+    },
+    {
+      "route": "/order-confirmation/:orderId",
+      "component": "OrderConfirmationPage (minified Mh) in RequireAuth",
+      "route_type": "dynamic",
+      "protected": true,
+      "source_file": null,
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "path \"/order-confirmation/:orderId\" -> Sr(Mh)"
+        },
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/order-confirmation/999999: GET /api/orders/999999 404 -> 'Order confirmation', \"We couldn't find that order.\", 'View your orders'. Success state not observable without placing an order."
+        }
+      ],
+      "confidence": "MEDIUM"
+    },
+    {
+      "route": "* (not found)",
+      "component": "NotFoundPage (minified Oh)",
+      "route_type": "catch-all",
+      "protected": false,
+      "source_file": null,
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "last route o.jsx(dt,{component:Oh})"
+        },
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/some/unknown/page: heading 'Page not found', 'The page you're looking for doesn't exist or has moved.', link 'Go to the home page'"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "route": "/login",
+      "component": "LoginPage (minified Rh)",
+      "route_type": "static (query: next)",
+      "protected": false,
+      "source_file": null,
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "o.jsx(dt,{path:\"/login\",component:Rh})"
+        },
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/login?next=%2Faccount%2Forders%3Fx%3D1: 'WELCOME BACK', heading 'Sign in', textbox 'Email', textbox 'Password', button 'Sign in', link 'Create an account' -> /register?next=<same>"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "route": "/register",
+      "component": "RegisterPage (minified Vh)",
+      "route_type": "static (query: next)",
+      "protected": false,
+      "source_file": null,
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "o.jsx(dt,{path:\"/register\",component:Vh}); button text 'Creating account...' while submitting"
+        },
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "'JOIN BUILDMART', heading 'Create an account', textboxes First name, Last name, Email, Password (hint 'At least 8 characters.'), button 'Create account', link 'Sign in' -> /login?next=..."
+        }
+      ],
+      "confidence": "HIGH"
+    }
+  ],
+  "pages": [
+    {
+      "page_id": "home",
+      "route": "/",
+      "component": "HomePage",
+      "importance": "HIGH",
+      "components": [
+        "SiteHeader",
+        "LocationSelector",
+        "ProductCard"
+      ],
+      "apis": [
+        "GET /api/categories",
+        "GET /api/products",
+        "GET /api/auth/me",
+        "GET /api/cart"
+      ],
+      "elements": [
+        "role=link[name=\"Shop products\"]",
+        "role=link[name=\"View all\"]",
+        "role=button[name=\"Add to cart\"]"
+      ],
+      "dynamic_elements": [
+        "Product price and stock status on product cards",
+        "header cart count"
+      ],
+      "evidence": [
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Runtime verified at desktop 1280 (4-column product grid, header 84px) and mobile 390x844 (2-column grid, header stacks to 184px, category nav horizontally scrollable scrollWidth 531 > 390; same controls, no hamburger). Initial render before /api/auth/me resolves briefly shows 'Sign in' and 'Cart (0)' then 'Hi, Sarah' / 'Cart (2)'."
+        },
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "hero 'Power up your next project.', link 'Shop products', 'Shop by category' 10 links, 'Featured products' 8 cards, link 'View all'"
+        }
+      ]
+    },
+    {
+      "page_id": "products",
+      "route": "/products",
+      "component": "ProductListPage",
+      "importance": "HIGH",
+      "components": [
+        "ProductListPage",
+        "ProductCard",
+        "SiteHeader"
+      ],
+      "apis": [
+        "GET /api/products",
+        "GET /api/brands"
+      ],
+      "elements": [
+        "role=combobox[name=\"Brand\"]",
+        "role=spinbutton[name=\"Min price\"]",
+        "role=spinbutton[name=\"Max price\"]",
+        "role=checkbox[name=\"In stock\"]",
+        "role=combobox[name=\"Sort\"]",
+        "role=link[name=\"Back home\"]"
+      ],
+      "dynamic_elements": [
+        "Product price / stock status per store",
+        "product count text '<n> products'"
+      ],
+      "evidence": [
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/products and /products?search=DRILL navigated; while loading heading shows '0 products' before results"
+        }
+      ]
+    },
+    {
+      "page_id": "category",
+      "route": "/category/:slug",
+      "component": "ProductListPage",
+      "importance": "MEDIUM",
+      "components": [
+        "ProductListPage",
+        "ProductCard"
+      ],
+      "apis": [
+        "GET /api/products",
+        "GET /api/brands"
+      ],
+      "elements": [],
+      "dynamic_elements": [],
+      "evidence": [
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/category/power-tools (3 products), /category/hand-tools (heading briefly 'hand tools' then 'Hand Tools'; Stanley first), /category/no-such-cat (heading 'No Such Cat', empty state)"
+        }
+      ]
+    },
+    {
+      "page_id": "product_detail",
+      "route": "/products/:id",
+      "component": "ProductDetailPage",
+      "importance": "CRITICAL",
+      "components": [
+        "ProductDetailPage"
+      ],
+      "apis": [
+        "GET /api/products/{product_id}",
+        "POST /api/cart/items"
+      ],
+      "elements": [
+        "role=link[name=\"Back to products\"]",
+        "role=group[name=\"Options\"] >> role=radio",
+        "role=button[name=\"-\"]",
+        "role=button[name=\"+\"]",
+        "role=button[name=\"Add to cart\"]",
+        "role=link[name=\"View cart\"]"
+      ],
+      "dynamic_elements": [
+        "price",
+        "stock status",
+        "Quantity status"
+      ],
+      "evidence": [
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/products/1, /products/13, /products/9999 navigated and snapshotted"
+        }
+      ]
+    },
+    {
+      "page_id": "cart",
+      "route": "/cart",
+      "component": "CartPage",
+      "importance": "CRITICAL",
+      "components": [
+        "CartPage"
+      ],
+      "apis": [
+        "GET /api/cart",
+        "PATCH /api/cart/items/{item_id}",
+        "DELETE /api/cart/items/{item_id}"
+      ],
+      "elements": [
+        "role=button[name=/^Increase quantity of /]",
+        "role=button[name=/^Decrease quantity of /]",
+        "role=button[name=/^Remove /]",
+        "role=button[name=\"Proceed to checkout\"]",
+        "role=link[name=\"Continue shopping\"]"
+      ],
+      "dynamic_elements": [
+        "Cart line totals, item count, subtotal and header cart count"
+      ],
+      "evidence": [
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/cart navigated, snapshotted, reloaded"
+        }
+      ]
+    },
+    {
+      "page_id": "checkout",
+      "route": "/checkout",
+      "component": "CheckoutPage",
+      "importance": "CRITICAL",
+      "components": [
+        "CheckoutPage",
+        "AddressForm",
+        "RequireAuth"
+      ],
+      "apis": [
+        "GET /api/checkout",
+        "POST /api/checkout/validate",
+        "GET /api/fulfillment/options"
+      ],
+      "elements": [
+        "role=group[name=\"Delivery method\"] >> role=radio",
+        "role=group[name=\"Choose a pickup store\"] >> role=radio",
+        "role=group[name=\"Shipping address\"] >> role=radio",
+        "role=button[name=\"+ Add a new address\"]",
+        "role=checkbox[name=\"Billing address is the same as shipping\"]",
+        "role=group[name=\"Payment method\"] >> role=radio",
+        "role=button[name=\"Place order\"]",
+        "role=link[name=\"← Return to cart\"]"
+      ],
+      "dynamic_elements": [
+        "Checkout estimated tax, total and delivery/pickup dates"
+      ],
+      "evidence": [
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/checkout reached via 'Proceed to checkout' while signed in; snapshotted"
+        }
+      ]
+    },
+    {
+      "page_id": "account",
+      "route": "/account",
+      "component": "AccountPage",
+      "importance": "HIGH",
+      "components": [
+        "RequireAuth"
+      ],
+      "apis": [
+        "GET /api/auth/me",
+        "POST /api/auth/logout"
+      ],
+      "elements": [
+        "role=link[name=/Your orders/]",
+        "role=button[name=\"Sign out\"]"
+      ],
+      "dynamic_elements": [],
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/account: 'Hi, Sarah', Profile, 'Your orders' link, 'Sign out'"
+        }
+      ]
+    },
+    {
+      "page_id": "orders",
+      "route": "/account/orders",
+      "component": "OrdersPage",
+      "importance": "MEDIUM",
+      "components": [],
+      "apis": [
+        "GET /api/orders"
+      ],
+      "elements": [
+        "role=link[name=\"← Account\"]",
+        "role=link[name=\"Start shopping\"]"
+      ],
+      "dynamic_elements": [],
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "empty state 'You haven't placed any orders yet.'"
+        }
+      ]
+    },
+    {
+      "page_id": "order_detail",
+      "route": "/account/orders/:orderId",
+      "component": "OrderDetailPage",
+      "importance": "MEDIUM",
+      "components": [],
+      "apis": [
+        "GET /api/orders/{order_id}"
+      ],
+      "elements": [],
+      "dynamic_elements": [],
+      "evidence": [
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Only error states verified (404 / 422); success state blocked: no orders exist"
+        }
+      ]
+    },
+    {
+      "page_id": "order_confirmation",
+      "route": "/order-confirmation/:orderId",
+      "component": "OrderConfirmationPage",
+      "importance": "MEDIUM",
+      "components": [],
+      "apis": [
+        "GET /api/orders/{order_id}"
+      ],
+      "elements": [],
+      "dynamic_elements": [],
+      "evidence": [
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Only not-found state verified; success requires placing an order (forbidden)"
+        }
+      ]
+    },
+    {
+      "page_id": "not_found",
+      "route": "* (not found)",
+      "component": "NotFoundPage",
+      "importance": "LOW",
+      "components": [],
+      "apis": [],
+      "elements": [
+        "role=link[name=\"Go to the home page\"]"
+      ],
+      "dynamic_elements": [],
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/some/unknown/page -> 'Page not found'"
+        }
+      ]
+    },
+    {
+      "page_id": "login",
+      "route": "/login",
+      "component": "LoginPage",
+      "importance": "CRITICAL",
+      "components": [],
+      "apis": [
+        "POST /api/auth/login"
+      ],
+      "elements": [
+        "role=textbox[name=\"Email\"]",
+        "role=textbox[name=\"Password\"]",
+        "role=button[name=\"Sign in\"]",
+        "role=link[name=\"Create an account\"]",
+        "role=alert"
+      ],
+      "dynamic_elements": [],
+      "evidence": [
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Reached via RequireAuth redirect after sign-out; snapshotted"
+        }
+      ]
+    },
+    {
+      "page_id": "register",
+      "route": "/register",
+      "component": "RegisterPage",
+      "importance": "HIGH",
+      "components": [],
+      "apis": [
+        "POST /api/auth/register"
+      ],
+      "elements": [
+        "role=textbox[name=\"First name\"]",
+        "role=textbox[name=\"Last name\"]",
+        "role=textbox[name=\"Email\"]",
+        "role=textbox[name=\"Password\"]",
+        "role=button[name=\"Create account\"]",
+        "role=link[name=\"Sign in\"]"
+      ],
+      "dynamic_elements": [],
+      "evidence": [
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/register?next=%2Fcheckout navigated and snapshotted"
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "SiteHeader",
+      "file": "/assets/index-CliREoHX.js (bundled; no source available)",
+      "parent": null,
+      "children": [
+        "SearchBar",
+        "LocationSelector",
+        "AccountLink",
+        "CartLink",
+        "CategoryNav"
+      ],
+      "page": null,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "banner contains link 'BUILD MART' (/), textbox 'What can we help you find?', button 'Search', location button ('Shopping location Choose ZIP Select' / 'Delivering to 77002 Change'), link 'Hi, Sarah' (/account) when signed in, link 'Cart (0)' (/cart). navigation: Shop All (/products), Power Tools, Hand Tools, Hardware, Paint, Lawn & Garden (/category/<slug>)"
+        }
+      ]
+    },
+    {
+      "name": "LocationSelector",
+      "file": "/assets/index-CliREoHX.js (bundled)",
+      "parent": "SiteHeader",
+      "children": [],
+      "page": null,
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Clicking location button expands popover 'Choose your location' with combobox 'Available stores' (5 stores: Atlanta North 30319, Dallas North 75225, Houston Central 77002, Houston West 77063, Phoenix Central 85016), textbox 'ZIP code', button 'Update location'. Selecting a store auto-fills ZIP. Invalid ZIP 00000 -> GET /api/regions/zip/00000 404 and inline message \"We couldn't find a store for this ZIP code\". Empty ZIP + no store -> popover closes, still 'Choose ZIP'. Valid 77002 -> header 'Delivering to 77002 Change', products refetched with region_id=1&store_id=1, prices and stock appear."
+        },
+        {
+          "type": "browser_evaluate",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "localStorage key 'build-mart-location' stores {zip_code, region{id,name...}, store{...}}; 'build-mart-session' stores guest cart session id 'session-<timestamp>'"
+        }
+      ]
+    },
+    {
+      "name": "ProductListPage",
+      "file": "/assets/index-CliREoHX.js (minified zh)",
+      "parent": null,
+      "children": [
+        "ProductFilters",
+        "ProductCard"
+      ],
+      "page": "/products",
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Brand select -> GET /api/products?brand=klein-tools (2 products). Min 100 + Max 50 -> 0 products, 'No products matched this selection.' (no client validation). Min 100 + In stock + Sort Price -> 6 products ascending by price ($129..$499). Filter state not reflected in URL; header search navigates to /products?search=<q> and resets filters. Results limit=24 per request; catalog total 14, no pagination UI observed."
+        },
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/brands",
+          "observation": "loaded on page mount to populate Brand select (10 brands)"
+        }
+      ]
+    },
+    {
+      "name": "ProductCard",
+      "file": "/assets/index-CliREoHX.js (bundled)",
+      "parent": "ProductListPage / HomePage",
+      "children": [],
+      "page": null,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "article: img(alt=name), brand paragraph, link name -> /products/<id>, rating '4.8 / 5 (1248)', price (sale with deletion of list price), stock status, button 'Add to cart' (disabled when no location)"
+        }
+      ]
+    },
+    {
+      "name": "ProductDetailPage",
+      "file": "/assets/index-CliREoHX.js (minified Uh)",
+      "parent": null,
+      "children": [],
+      "page": "/products/:id",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "link 'Back to products', img, brand, h1 name, '4.8 / 5 (1248 reviews)', price (+deletion list price), short description, 'SKU: DW-DCD791D2 | Model: DCD791D2', radiogroup 'Options' (variants e.g. '2-Battery Kit' checked default, 'Tool Only') only for products with variants, stock status, Quantity '-' status '+' , button 'Add to cart'"
+        },
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "'-' at 1 keeps 1 (min 1). Product 13 at store 1 (3 available): '+' increments 2,3 then stays 3 and '+' becomes disabled (max = available qty). Selecting variant 'Tool Only' did not change displayed price. Product 13 at Phoenix store (85016): 'Out of Stock', '+' disabled, button 'Out of stock' disabled; price $539.00/$589.00"
+        },
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/products/1?region_id=1&store_id=1",
+          "observation": "detail fetch includes location params"
+        }
+      ]
+    },
+    {
+      "name": "CartPage",
+      "file": "/assets/index-CliREoHX.js (minified Vp)",
+      "parent": null,
+      "children": [
+        "CartLineItem",
+        "OrderSummary"
+      ],
+      "page": "/cart",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "article per item: img, link name -> /products/<id>, variant name, '$159.00 each', button 'Decrease quantity of <name>' (disabled at 1), status 'Quantity', button 'Increase quantity of <name>', line total strong, button 'Remove <name>'. complementary 'ORDER SUMMARY': '<n> item(s)' + amount, 'Subtotal', button 'Proceed to checkout', link 'Continue shopping' (/products)"
+        },
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Increase Stanley 1->2: PATCH /api/cart/items/3 200, line $39.94, summary '4 item(s)' $357.94, header 'Cart (4)'. Decrease then Remove: item removed. Refresh /cart: cart persisted (DeWalt x2, $318.00, Cart (2))."
+        }
+      ]
+    },
+    {
+      "name": "CheckoutPage",
+      "file": "/assets/index-CliREoHX.js (minified Th)",
+      "parent": null,
+      "children": [
+        "CheckoutProgress",
+        "DeliverySection",
+        "AddressForm",
+        "BillingSection",
+        "PaymentSection",
+        "CheckoutOrderSummary"
+      ],
+      "page": "/checkout",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Single page: link '← Return to cart'; list 'Checkout progress' (Delivery/Billing/Payment '(complete)', 4 Review); region '1. Delivery' with group 'Delivery method' radios 'Ship to Home Arrives by Oct 19, 2026 Free' [checked], 'Store Pickup Ready for pickup Oct 12, 2026 Free', 'Local Delivery ... $79.00' [disabled, reason 'Delivery is only available to addresses in the Houston Metro area.']; group 'Shipping address' (2 saved addresses with Edit buttons) + '+ Add a new address'; region '2. Billing address' checkbox 'Billing address is the same as shipping' [checked]; region '3. Payment' group 'Payment method' radios 'VISA •••• 5555Default Expires 08/29', 'Use a new card'; complementary 'Order summary' lines, Subtotal, fulfillment cost, Estimated tax, Total, 'Estimated arrival: <date>', button 'Place order', 'You'll only be charged once your payment is approved.'"
+        },
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Store Pickup: shows group 'Choose a pickup store' (Houston Central [checked], Houston West, 'All items in stock'); shipping address hidden; billing checkbox replaced by 'Billing address' group; tax $28.30 -> $26.24, total $346.30 -> $344.24, 'Ready for pickup: Oct 12, 2026'. Unchecking billing-same shows 'Billing address' group (1 address) + add address. 'Use a new card' reveals group 'New card details': Name on card, Card number, Expiry month (MM, 01-12), Expiry year (YYYY, 2026-2041), Security code, checkbox 'Save this card for future purchases', 'We never store your full card number or security code.' Invalid card typed shows no inline error on blur. While address form open, saved address radios and Edit buttons disabled."
+        },
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "On load: GET /api/checkout?store_id=1, POST /api/checkout/validate, GET /api/fulfillment/options?store_id=1&shipping_address_id=3; each selection change re-POSTs /api/checkout/validate; changing shipping address refetches fulfillment options with new shipping_address_id=4"
+        }
+      ]
+    },
+    {
+      "name": "AddressForm",
+      "file": "/assets/index-CliREoHX.js (bundled)",
+      "parent": "CheckoutPage",
+      "children": [],
+      "page": null,
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Fields: First name, Last name, Street address, Apartment, suite, etc. (optional), City, State (combobox Select/AL..WY), ZIP code, Phone, combobox 'Use this address for' (Shipping and billing / Shipping only / Billing only), checkbox 'Make this my default address', buttons 'Save address', 'Cancel'"
+        },
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Empty submit: no network request; fields marked invalid with 'This field is required.' (first/last name, street, city), 'Choose a state.', 'Enter a 5-digit ZIP code or ZIP+4.', 'Enter a 10-digit US phone number.' Cancel closes form."
+        }
+      ]
+    },
+    {
+      "name": "RequireAuth",
+      "file": "/assets/index-CliREoHX.js (minified Sr/Rp)",
+      "parent": null,
+      "children": [],
+      "page": null,
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "function Rp: if loading -> <p role=status>Checking your account...</p>; if !user -> Redirect to `/login?next=${encodeURIComponent(pathname+search)}`; wraps /checkout, /order-confirmation/:orderId, /account, /account/orders, /account/orders/:orderId"
+        },
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "status 'Checking your account...' observed on /account load"
+        }
+      ]
+    }
+  ],
+  "apis": [
+    {
+      "method": "GET",
+      "endpoint": "/api/products/{product_id}",
+      "used_by": [
+        "ProductDetailPage"
+      ],
+      "purpose": "Product detail incl. price/availability for region_id/store_id; 404 for unknown id",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/products/1?region_id=1&store_id=1",
+          "observation": "200 on /products/1; /api/products/9999 404 on /products/9999"
+        },
+        {
+          "type": "openapi",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": "/openapi.json",
+          "observation": "GET /api/products/{product_id} params product_id, region_id, store_id"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/products",
+      "used_by": [
+        "HomePage",
+        "ProductListPage"
+      ],
+      "purpose": "List/search/filter products. Params: category, brand, search, min_price, max_price, in_stock, region_id, store_id, page, limit, sort. Response {items,total,page,limit}",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/products?limit=8",
+          "observation": "Home featured products"
+        },
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/products?region_id=1&store_id=1&in_stock=false&sort=relevance&limit=24",
+          "observation": "/products page"
+        },
+        {
+          "type": "openapi",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": "/openapi.json",
+          "observation": "parameter list"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/categories",
+      "used_by": [
+        "HomePage"
+      ],
+      "purpose": "List 10 categories (slug used in /category/:slug)",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/categories",
+          "observation": "called on / ; renders 'Shop by category' links"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/brands",
+      "used_by": [
+        "ProductListPage"
+      ],
+      "purpose": "List brands for Brand filter",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/brands",
+          "observation": "called on /products and /category/power-tools"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/regions/zip/{zip_code}",
+      "used_by": [
+        "LocationSelector"
+      ],
+      "purpose": "Resolve ZIP to region (+store) for location selection; 404 when no store",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/regions/zip/77002",
+          "observation": "200 on Update location; /api/regions/zip/00000 404 -> \"We couldn't find a store for this ZIP code\"; empty zip requested /api/regions/zip/ -> 200 (likely SPA fallback)"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/stores",
+      "used_by": [
+        "LocationSelector"
+      ],
+      "purpose": "List stores (5) for 'Available stores' select; optional region_id",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/stores",
+          "observation": "fetched when location popover opened"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/regions",
+      "used_by": [],
+      "purpose": "List regions (Atlanta, Dallas, Houston, Phoenix Metro with zip ranges). Not observed called by UI.",
+      "evidence": [
+        {
+          "type": "api_call",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/regions",
+          "observation": "returned 4 regions with zip_start/zip_end"
+        }
+      ],
+      "confidence": "MEDIUM"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/cart",
+      "used_by": [
+        "SiteHeader",
+        "CartPage"
+      ],
+      "purpose": "Get cart {id, items[{id,product_id,product_name,variant_id,variant_name,quantity,unit_price,total}], item_count, subtotal}. Params session_id (guest, from localStorage 'build-mart-session'), region_id, store_id, zip_code; bm_session cookie links to user cart. Prices recomputed for passed location and persisted (call without location returned last-priced values).",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/cart?session_id=...&region_id=1&store_id=1&zip_code=77002",
+          "observation": "called on every page load (header Cart count) and /cart"
+        },
+        {
+          "type": "api_call",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/cart",
+          "observation": "with region 4/store 5 unit_price 169 (vs 159 Houston); subsequent call without location returned 169"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "POST",
+      "endpoint": "/api/cart/items",
+      "used_by": [
+        "ProductDetailPage",
+        "ProductCard"
+      ],
+      "purpose": "Add item {product_id, variant_id?, quantity>=1, region_id?, store_id?, zip_code?}; returns 201",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "POST",
+          "endpoint": "/api/cart/items?session_id=...",
+          "observation": "201 after 'Add to cart' on /products/1 (qty 2) and on hand-tools card; PDP shows 'Product added to cart. View cart', card button text becomes 'Added to cart', header Cart count increments by quantity"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "PATCH",
+      "endpoint": "/api/cart/items/{item_id}",
+      "used_by": [
+        "CartPage"
+      ],
+      "purpose": "Update quantity {quantity>=1, region_id?, store_id?}. 0 -> 422 'Input should be greater than or equal to 1'; above stock (999) -> 409 'Only 49 units are available'",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "PATCH",
+          "endpoint": "/api/cart/items/3?session_id=...",
+          "observation": "200 on Increase click"
+        },
+        {
+          "type": "api_call",
+          "file": null,
+          "line": null,
+          "method": "PATCH",
+          "endpoint": "/api/cart/items/3",
+          "observation": "quantity 0 -> 422; 999 -> 409 {detail:'Only 49 units are available'}"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "DELETE",
+      "endpoint": "/api/cart/items/{item_id}",
+      "used_by": [
+        "CartPage"
+      ],
+      "purpose": "Remove cart item",
+      "evidence": [
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "`/cart/items/${i}?session_id=...` client call"
+        },
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Remove button removed item; state persisted after refresh"
+        }
+      ],
+      "confidence": "MEDIUM"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/checkout",
+      "used_by": [
+        "CheckoutPage"
+      ],
+      "purpose": "Checkout data {quote{lines, issues[{code,message,blocking}], subtotal, discount, shipping_cost, tax, total, estimated_date, can_place_order}, addresses, payment_methods, fulfillment_options}. Requires auth cookie. Initial issue FULFILLMENT_REQUIRED 'Choose how you'd like to receive your order.'",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/checkout?store_id=1",
+          "observation": "on /checkout load"
+        },
+        {
+          "type": "api_call",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/checkout?store_id=1",
+          "observation": "response keys quote,addresses,payment_methods,fulfillment_options"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "POST",
+      "endpoint": "/api/checkout/validate",
+      "used_by": [
+        "CheckoutPage"
+      ],
+      "purpose": "Re-quote for selection {store_id, fulfillment_type, pickup_store_id, shipping_address_id, billing_address_id}; drives totals/tax",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "POST",
+          "endpoint": "/api/checkout/validate",
+          "observation": "200 on load and after each delivery/address/billing change"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/fulfillment/options",
+      "used_by": [
+        "CheckoutPage"
+      ],
+      "purpose": "Fulfillment options [{type SHIP_TO_HOME|STORE_PICKUP|DELIVERY, label, available, reason, cost, estimated_date, pickup_stores[{store_id,all_items_available,unavailable_product_ids}]}] for store_id + shipping_address_id",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/fulfillment/options?store_id=1&shipping_address_id=3",
+          "observation": "DELIVERY available:false reason 'Delivery is only available to addresses in the Houston Metro area.' cost 79 (Atlanta address)"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "POST",
+      "endpoint": "/api/payments/validate",
+      "used_by": [],
+      "purpose": "Validate card (no charge). Returns 200 {valid, brand, last4, errors}. Errors observed: card_number 'Enter a valid card number.', expiry 'This card has expired.', cvv 'Enter the 3-digit security code.'",
+      "evidence": [
+        {
+          "type": "api_call",
+          "file": null,
+          "line": null,
+          "method": "POST",
+          "endpoint": "/api/payments/validate",
+          "observation": "1234 -> valid:false card_number error; 4111..., 2020 -> expired; cvv '1' -> cvv error; valid -> valid:true brand VISA last4 1111. UI caller not observed (bundle literal list does not include it)."
+        }
+      ],
+      "confidence": "MEDIUM"
+    },
+    {
+      "method": "POST",
+      "endpoint": "/api/orders",
+      "used_by": [
+        "CheckoutPage"
+      ],
+      "purpose": "Place order (PlaceOrderRequest). IRREVERSIBLE — not exercised.",
+      "evidence": [
+        {
+          "type": "openapi",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": "/openapi.json",
+          "observation": "POST /api/orders 'Place Order'"
+        },
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "client path literal \"/orders\" present; exact caller component not verified"
+        }
+      ],
+      "confidence": "LOW"
+    },
+    {
+      "method": "POST",
+      "endpoint": "/api/payments/process",
+      "used_by": [
+        "CheckoutPage"
+      ],
+      "purpose": "Process payment ('Pay'). IRREVERSIBLE — not exercised.",
+      "evidence": [
+        {
+          "type": "openapi",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": "/openapi.json",
+          "observation": "POST /api/payments/process 'Pay'"
+        },
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "client literal \"/payments/process\"; caller assumed checkout (not runtime-verified)"
+        }
+      ],
+      "confidence": "LOW"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/orders",
+      "used_by": [
+        "OrdersPage"
+      ],
+      "purpose": "Paginated order history (page, limit)",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/orders?page=1&limit=10",
+          "observation": "200 on /account/orders (empty)"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/orders/{order_id}",
+      "used_by": [
+        "OrderDetailPage",
+        "OrderConfirmationPage"
+      ],
+      "purpose": "Order detail; integer id; 404 unknown, 422 non-integer",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/orders/999999",
+          "observation": "404 from both /account/orders/999999 and /order-confirmation/999999; /api/orders/BM-DOESNOTEXIST 422"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/auth/me",
+      "used_by": [
+        "SiteHeader",
+        "RequireAuth"
+      ],
+      "purpose": "Current user from bm_session cookie; drives header 'Hi, <first>' and RequireAuth guard",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/auth/me",
+          "observation": "200 on every page load while signed in"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "POST",
+      "endpoint": "/api/auth/login",
+      "used_by": [
+        "LoginPage"
+      ],
+      "purpose": "Login {email, password(1-128)}; sets bm_session cookie. 422 invalid email format, 401 wrong credentials",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "POST",
+          "endpoint": "/api/auth/login",
+          "observation": "'not-an-email' -> 422 (UI alert 'Enter a valid email address.'); unknown account -> 401 (alert 'Invalid email or password.'); empty fields -> no request, alert 'Enter your email and password.'"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "POST",
+      "endpoint": "/api/auth/register",
+      "used_by": [
+        "RegisterPage"
+      ],
+      "purpose": "Register {first_name 1-50, last_name 1-50, email, password 8-128}; 201 signs user in; 409 duplicate email",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "POST",
+          "endpoint": "/api/auth/register",
+          "observation": "existing email -> 409, UI 'An account with this email already exists.'; new email -> 201, redirect to next (/checkout), header 'Hi, Disc'"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "POST",
+      "endpoint": "/api/auth/logout",
+      "used_by": [
+        "AccountPage"
+      ],
+      "purpose": "Sign out (clears session), 204",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "POST",
+          "endpoint": "/api/auth/logout",
+          "observation": "204 after clicking 'Sign out'; app navigated to / with header 'Sign in', 'Cart (0)'; /api/auth/me then returns 200 {user:null}; /api/checkout returns 401 'Please sign in to continue.'"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "method": "GET/POST/PUT/DELETE",
+      "endpoint": "/api/addresses, /api/addresses/{address_id}",
+      "used_by": [
+        "CheckoutPage"
+      ],
+      "purpose": "Saved addresses CRUD (AddressRequest: type shipping|billing|both, first/last name, address_line1/2, city, state, zip_code, phone, is_default). Checkout AddressForm Save/Edit use POST/PUT (bundle literals \\\"/addresses\\\", `/addresses/${i}`). Not exercised — site rule forbids changing saved data.",
+      "evidence": [
+        {
+          "type": "openapi",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": "/openapi.json",
+          "observation": "GET/POST /api/addresses, PUT/DELETE /api/addresses/{address_id}"
+        },
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "client literals \"/addresses\" and `/addresses/${i}`"
+        }
+      ],
+      "confidence": "LOW"
+    },
+    {
+      "method": "GET/POST",
+      "endpoint": "/api/payment-methods; GET /api/payments/{transaction_id}; GET /api/categories/{slug}; GET /api/stores/{store_id}; GET /api/products/{product_id}/availability; GET /health",
+      "used_by": [],
+      "purpose": "Backend endpoints present in OpenAPI but no frontend usage observed in network traffic or bundle literal scan (payment methods are delivered via GET /api/checkout payload).",
+      "evidence": [
+        {
+          "type": "openapi",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": "/openapi.json",
+          "observation": "paths listed in openapi.json"
+        },
+        {
+          "type": "bundle_inspection",
+          "file": "/assets/index-CliREoHX.js",
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "regex scan of client path literals did not include these paths"
+        }
+      ],
+      "confidence": "LOW"
+    }
+  ],
+  "elements": [
+    {
+      "element_type": "button",
+      "text": "Shopping location Choose ZIP Select | Delivering to 77002 Change",
+      "selector": "role=button[name=/^(Shopping location|Delivering to)/]",
+      "component": "LocationSelector",
+      "action": "Toggle location popover",
+      "importance": "CRITICAL",
+      "interaction_class": "READ_ONLY",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "button \"Shopping location Choose ZIP Select\" before location set; button \"Delivering to 77002 Change\" after; [expanded] when open"
+        }
+      ]
+    },
+    {
+      "element_type": "combobox",
+      "text": null,
+      "selector": "role=combobox[name=\"Available stores\"]",
+      "component": "LocationSelector",
+      "action": null,
+      "importance": "CRITICAL",
+      "interaction_class": "STATE_CHANGE",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "combobox 'Available stores' options: 'Select a store or ZIP', 5 BuildMart stores; selecting fills ZIP textbox"
+        }
+      ]
+    },
+    {
+      "element_type": "textbox",
+      "text": null,
+      "selector": "role=textbox[name=\"ZIP code\"]",
+      "component": "LocationSelector",
+      "action": null,
+      "importance": "HIGH",
+      "interaction_class": "STATE_CHANGE",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "textbox 'ZIP code' in location popover; invalid 00000 shows \"We couldn't find a store for this ZIP code\""
+        }
+      ]
+    },
+    {
+      "element_type": "button",
+      "text": null,
+      "selector": "role=button[name=\"Update location\"]",
+      "component": "LocationSelector",
+      "action": null,
+      "importance": "CRITICAL",
+      "interaction_class": "STATE_CHANGE",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/regions/zip/77002",
+          "observation": "Click triggers GET /api/regions/zip/{zip}; on 200 products and cart refetched with region_id/store_id"
+        }
+      ]
+    },
+    {
+      "element_type": "textbox",
+      "text": null,
+      "selector": "role=textbox[name=\"What can we help you find?\"]",
+      "component": "SiteHeader",
+      "action": null,
+      "importance": "HIGH",
+      "interaction_class": "READ_ONLY",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "banner textbox 'What can we help you find?' with button 'Search'"
+        }
+      ]
+    },
+    {
+      "element_type": "link",
+      "text": "Cart (0)",
+      "selector": "role=link[name=/^Cart \\(\\d+\\)$/]",
+      "component": "SiteHeader",
+      "action": null,
+      "importance": "HIGH",
+      "interaction_class": "READ_ONLY",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "link 'Cart (0)' -> /cart"
+        }
+      ]
+    },
+    {
+      "element_type": "combobox",
+      "text": null,
+      "selector": "role=combobox[name=\"Brand\"]",
+      "component": "ProductFilters",
+      "action": null,
+      "importance": "HIGH",
+      "interaction_class": "READ_ONLY",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "combobox 'Brand' default 'All brands'; options Behr, DeWalt, Everbilt, Husky, Klein Tools, Makita, Milwaukee, Philips, Ryobi, Stanley"
+        }
+      ]
+    },
+    {
+      "element_type": "spinbutton",
+      "text": null,
+      "selector": "role=spinbutton[name=\"Min price\"]",
+      "component": "ProductFilters",
+      "action": null,
+      "importance": "MEDIUM",
+      "interaction_class": "READ_ONLY",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "spinbutton 'Min price'; maps to min_price query param"
+        }
+      ]
+    },
+    {
+      "element_type": "spinbutton",
+      "text": null,
+      "selector": "role=spinbutton[name=\"Max price\"]",
+      "component": "ProductFilters",
+      "action": null,
+      "importance": "MEDIUM",
+      "interaction_class": "READ_ONLY",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "spinbutton 'Max price'; maps to max_price"
+        }
+      ]
+    },
+    {
+      "element_type": "checkbox",
+      "text": null,
+      "selector": "role=checkbox[name=\"In stock\"]",
+      "component": "ProductFilters",
+      "action": null,
+      "importance": "MEDIUM",
+      "interaction_class": "READ_ONLY",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "checking sets in_stock=true in GET /api/products"
+        }
+      ]
+    },
+    {
+      "element_type": "combobox",
+      "text": null,
+      "selector": "role=combobox[name=\"Sort\"]",
+      "component": "ProductFilters",
+      "action": null,
+      "importance": "MEDIUM",
+      "interaction_class": "READ_ONLY",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "options Relevance (default, sort=relevance), Top rated, Price (sort=price, ascending observed)"
+        }
+      ]
+    },
+    {
+      "element_type": "radio",
+      "text": "2-Battery Kit / Tool Only",
+      "selector": "role=group[name=\"Options\"] >> role=radio",
+      "component": "ProductDetailPage",
+      "action": null,
+      "importance": "MEDIUM",
+      "interaction_class": "STATE_CHANGE",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "group 'Options' radio '2-Battery Kit' [checked], radio 'Tool Only' on /products/1"
+        }
+      ]
+    },
+    {
+      "element_type": "button",
+      "text": null,
+      "selector": "role=button[name=\"+\"]",
+      "component": "ProductDetailPage / CartPage",
+      "action": null,
+      "importance": "MEDIUM",
+      "interaction_class": "STATE_CHANGE",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Quantity stepper: button '-', status 'Quantity', button '+'; '+' disabled at available quantity or when out of stock"
+        }
+      ]
+    },
+    {
+      "element_type": "button",
+      "text": null,
+      "selector": "role=button[name=\"Add to cart\"]",
+      "component": "ProductDetailPage / ProductCard",
+      "action": null,
+      "importance": "CRITICAL",
+      "interaction_class": "STATE_CHANGE",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "'Add to cart' button; disabled with no location; replaced by disabled 'Out of stock' button when stock is 0"
+        }
+      ]
+    },
+    {
+      "element_type": "button",
+      "text": null,
+      "selector": "role=button[name=/^Increase quantity of /]",
+      "component": "CartPage",
+      "action": null,
+      "importance": "HIGH",
+      "interaction_class": "STATE_CHANGE",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "button 'Increase quantity of Stanley 25 ft. PowerLock Tape Measure' -> PATCH /api/cart/items/{id}"
+        }
+      ]
+    },
+    {
+      "element_type": "button",
+      "text": null,
+      "selector": "role=button[name=/^Decrease quantity of /]",
+      "component": "CartPage",
+      "action": null,
+      "importance": "HIGH",
+      "interaction_class": "STATE_CHANGE",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "button 'Decrease quantity of Stanley ...' [disabled] when quantity 1"
+        }
+      ]
+    },
+    {
+      "element_type": "button",
+      "text": "Remove",
+      "selector": "role=button[name=/^Remove /]",
+      "component": "CartPage",
+      "action": null,
+      "importance": "HIGH",
+      "interaction_class": "STATE_CHANGE",
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "'Remove Stanley 25 ft. PowerLock Tape Measure' removed line item (reversible cart change)"
+        }
+      ]
+    },
+    {
+      "element_type": "button",
+      "text": null,
+      "selector": "role=button[name=\"Proceed to checkout\"]",
+      "component": "CartPage",
+      "action": null,
+      "importance": "CRITICAL",
+      "interaction_class": "READ_ONLY",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "button 'Proceed to checkout' in ORDER SUMMARY"
+        }
+      ]
+    },
+    {
+      "element_type": "radio",
+      "text": "Ship to Home | Store Pickup | Local Delivery",
+      "selector": "role=group[name=\"Delivery method\"] >> role=radio",
+      "component": "CheckoutPage",
+      "action": null,
+      "importance": "CRITICAL",
+      "interaction_class": "STATE_CHANGE",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "radios 'Ship to Home Arrives by Oct 19, 2026 Free', 'Store Pickup Ready for pickup Oct 12, 2026 Free', 'Local Delivery ... $79.00' [disabled]"
+        }
+      ]
+    },
+    {
+      "element_type": "radio",
+      "text": null,
+      "selector": "role=group[name=\"Choose a pickup store\"] >> role=radio",
+      "component": "CheckoutPage",
+      "action": null,
+      "importance": "MEDIUM",
+      "interaction_class": "STATE_CHANGE",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "after Store Pickup: radios 'BuildMart Houston Central ... All items in stock' [checked], 'BuildMart Houston West ...'"
+        }
+      ]
+    },
+    {
+      "element_type": "radio",
+      "text": null,
+      "selector": "role=group[name=\"Shipping address\"] >> role=radio",
+      "component": "CheckoutPage",
+      "action": null,
+      "importance": "HIGH",
+      "interaction_class": "STATE_CHANGE",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "group 'Shipping address' radios for saved addresses (default marked 'Default'), each with button 'Edit'"
+        }
+      ]
+    },
+    {
+      "element_type": "button",
+      "text": null,
+      "selector": "role=button[name=\"+ Add a new address\"]",
+      "component": "CheckoutPage",
+      "action": null,
+      "importance": "MEDIUM",
+      "interaction_class": "READ_ONLY",
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "opens AddressForm inline"
+        }
+      ]
+    },
+    {
+      "element_type": "checkbox",
+      "text": null,
+      "selector": "role=checkbox[name=\"Billing address is the same as shipping\"]",
+      "component": "CheckoutPage",
+      "action": null,
+      "importance": "MEDIUM",
+      "interaction_class": "STATE_CHANGE",
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "checked by default for Ship to Home; unchecking reveals group 'Billing address'; not shown for Store Pickup"
+        }
+      ]
+    },
+    {
+      "element_type": "radio",
+      "text": "VISA •••• 5555 Default | Use a new card",
+      "selector": "role=group[name=\"Payment method\"] >> role=radio",
+      "component": "CheckoutPage",
+      "action": null,
+      "importance": "HIGH",
+      "interaction_class": "STATE_CHANGE",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "radios 'VISA •••• 5555Default Expires 08/29' [checked], 'Use a new card Visa, Mastercard, American Express or Discover'"
+        }
+      ]
+    },
+    {
+      "element_type": "textbox",
+      "text": null,
+      "selector": "role=group[name=\"New card details\"] >> role=textbox[name=\"Card number\"]",
+      "component": "CheckoutPage",
+      "action": null,
+      "importance": "MEDIUM",
+      "interaction_class": "READ_ONLY",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "group 'New card details': textbox 'Name on card', 'Card number', combobox 'Expiry month', 'Expiry year', textbox 'Security code', checkbox 'Save this card for future purchases'"
+        }
+      ]
+    },
+    {
+      "element_type": "button",
+      "text": null,
+      "selector": "role=button[name=\"Place order\"]",
+      "component": "CheckoutPage",
+      "action": "Places order and processes payment — IRREVERSIBLE, never clicked during discovery",
+      "importance": "CRITICAL",
+      "interaction_class": "EXTERNAL",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "button 'Place order' in Order summary (enabled); bundle client calls \"/orders\" and \"/payments/process\""
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "flow_id": "search_products",
+      "name": "Search products from header",
+      "importance": "HIGH",
+      "steps": [
+        {
+          "page": "any",
+          "action": "Type query in textbox 'What can we help you find?' and press Enter / click 'Search'"
+        },
+        {
+          "page": "/products?search=<q>",
+          "action": "GET /api/products?search=<q>&region_id&store_id&in_stock=false&sort=relevance&limit=24; results count heading"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "'DRILL' -> 3 products (case-insensitive). Partial 'dril' -> API total 3. '<script>%'' -> 0 products 'No products matched this selection.'. '  drill  ' (padded) -> URL search=++drill++, 0 products (not trimmed). '   ' -> 0 products. Empty -> /products?search= shows all 14. Header textbox not prefilled from URL on direct load."
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "flow_id": "filter_sort_products",
+      "name": "Filter and sort product catalog",
+      "importance": "HIGH",
+      "steps": [
+        {
+          "page": "/products",
+          "action": "Select Brand 'Klein Tools' -> 2 products"
+        },
+        {
+          "page": "/products",
+          "action": "Reset Brand 'All brands' -> 14"
+        },
+        {
+          "page": "/products",
+          "action": "Min price 100, Max price 50 -> 0 products, empty state"
+        },
+        {
+          "page": "/products",
+          "action": "Clear max, check In stock, Sort Price -> 6 products ascending"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/products",
+          "observation": "each change triggers immediate refetch: brand=klein-tools; min_price=100&max_price=50; in_stock=true; sort=price"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "flow_id": "add_to_cart",
+      "name": "Add product to cart",
+      "importance": "CRITICAL",
+      "steps": [
+        {
+          "page": "any",
+          "action": "Precondition: location selected (else Add to cart disabled)"
+        },
+        {
+          "page": "/products/:id",
+          "action": "Optionally choose variant, set Quantity with +/- (1..available), click 'Add to cart'"
+        },
+        {
+          "page": "/products/:id",
+          "action": "POST /api/cart/items 201; message 'Product added to cart.' + 'View cart' link; header 'Cart (n)' increments"
+        },
+        {
+          "page": "/products or /category/:slug",
+          "action": "Alternatively click card 'Add to cart' (qty 1) -> button shows 'Added to cart'"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Cart (0) -> Cart (2) after adding DeWalt qty 2; Cart (3) after adding Stanley from /category/hand-tools card"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "flow_id": "manage_cart",
+      "name": "Update and remove cart items",
+      "importance": "HIGH",
+      "steps": [
+        {
+          "page": "/cart",
+          "action": "Increase quantity -> PATCH, line total + subtotal + header count update"
+        },
+        {
+          "page": "/cart",
+          "action": "Decrease quantity (disabled at 1)"
+        },
+        {
+          "page": "/cart",
+          "action": "Remove item -> line removed, totals update"
+        },
+        {
+          "page": "/cart",
+          "action": "Refresh -> cart persists (server-side, linked to signed-in user)"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Stanley 1->2: $39.94, '4 item(s)' $357.94; after remove + reload: DeWalt only, $318.00, 'Cart (2)'"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "flow_id": "checkout_up_to_place_order",
+      "name": "Checkout (stop before Place order)",
+      "importance": "CRITICAL",
+      "steps": [
+        {
+          "page": "/cart",
+          "action": "Precondition: signed in, location selected, cart non-empty. Click 'Proceed to checkout'"
+        },
+        {
+          "page": "/checkout",
+          "action": "GET /api/checkout, POST /api/checkout/validate, GET /api/fulfillment/options; defaults: Ship to Home, default address, billing same, default saved card"
+        },
+        {
+          "page": "/checkout",
+          "action": "Choose delivery method (Ship to Home / Store Pickup -> choose pickup store; Local Delivery disabled outside Houston Metro)"
+        },
+        {
+          "page": "/checkout",
+          "action": "Choose/add shipping address (Add address form validates required fields client-side)"
+        },
+        {
+          "page": "/checkout",
+          "action": "Billing same as shipping or choose billing address"
+        },
+        {
+          "page": "/checkout",
+          "action": "Choose saved card or 'Use a new card' and fill card details"
+        },
+        {
+          "page": "/checkout",
+          "action": "Review Order summary (subtotal, fulfillment cost, estimated tax, total, date). STOP — 'Place order' not clicked."
+        }
+      ],
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "All steps traversed in session except Place order; observed totals and section changes as described in CheckoutPage"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "flow_id": "user_login",
+      "name": "User login (invalid-input paths verified; success path not executed — no password available)",
+      "importance": "CRITICAL",
+      "steps": [
+        {
+          "page": "protected route",
+          "action": "Unauthenticated visit -> 'Checking your account...' -> redirect /login?next=<path+query>"
+        },
+        {
+          "page": "/login",
+          "action": "Submit empty -> alert 'Enter your email and password.' (no request)"
+        },
+        {
+          "page": "/login",
+          "action": "Invalid email format -> POST 422 -> alert 'Enter a valid email address.'"
+        },
+        {
+          "page": "/login",
+          "action": "Wrong credentials -> POST 401 -> alert 'Invalid email or password.', stays on /login, password retained"
+        },
+        {
+          "page": "/login",
+          "action": "Valid credentials -> expected redirect to next (not verified)"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/account/orders?x=1 -> /login?next=%2Faccount%2Forders%3Fx%3D1; alerts observed as listed"
+        }
+      ],
+      "confidence": "MEDIUM"
+    },
+    {
+      "flow_id": "user_logout",
+      "name": "Sign out",
+      "importance": "HIGH",
+      "steps": [
+        {
+          "page": "/account",
+          "action": "Click 'Sign out' -> POST /api/auth/logout 204"
+        },
+        {
+          "page": "/",
+          "action": "Redirect home; header 'Sign in', 'Cart (0)'; location (localStorage) retained"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "observed after sign out; localStorage still has build-mart-location, build-mart-session"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "flow_id": "user_registration",
+      "name": "Register new account (guest cart -> checkout)",
+      "importance": "HIGH",
+      "steps": [
+        {
+          "page": "/cart",
+          "action": "Guest with item clicks 'Proceed to checkout' -> /login?next=%2Fcheckout"
+        },
+        {
+          "page": "/login",
+          "action": "Click 'Create an account' -> /register?next=%2Fcheckout"
+        },
+        {
+          "page": "/register",
+          "action": "Empty submit -> 'Enter your first name.', 'Enter your last name.', 'Enter a valid email address.', 'Use at least 8 characters.' (no request)"
+        },
+        {
+          "page": "/register",
+          "action": "Password 'short' -> 'Use at least 8 characters.' (no request)"
+        },
+        {
+          "page": "/register",
+          "action": "Existing email -> 409 'An account with this email already exists.'"
+        },
+        {
+          "page": "/register",
+          "action": "Unique email -> 201, auto sign-in, redirect /checkout, header 'Hi, <first>', guest cart retained (Cart (1))"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "One test account created (discovery.agent.20261012@example.com); all messages observed"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "flow_id": "select_shopping_location",
+      "name": "Select shopping location (store/ZIP)",
+      "importance": "CRITICAL",
+      "steps": [
+        {
+          "page": "any",
+          "action": "Click 'Shopping location Choose ZIP Select' -> popover, GET /api/stores"
+        },
+        {
+          "page": "any",
+          "action": "Choose store in 'Available stores' (fills ZIP) or type ZIP"
+        },
+        {
+          "page": "any",
+          "action": "Click 'Update location' -> GET /api/regions/zip/{zip}; invalid -> \"We couldn't find a store for this ZIP code\""
+        },
+        {
+          "page": "any",
+          "action": "Success -> header 'Delivering to <zip> Change', prices/stock shown, Add to cart enabled; persisted in localStorage across reloads"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "00000 -> 404 + error; 77002 -> success; 85016 typed -> Phoenix store pricing ($539 workbench, Out of Stock)"
+        }
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "flow_id": "view_product",
+      "name": "View product details",
+      "importance": "HIGH",
+      "steps": [
+        {
+          "page": "/products or /",
+          "action": "Click product name link -> /products/:id"
+        },
+        {
+          "page": "/products/:id",
+          "action": "'Loading product...' then details; choose variant; adjust quantity within 1..available"
+        },
+        {
+          "page": "/products/:id",
+          "action": "Unknown id -> 'Product not found'"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "browser_navigation",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "/products/1, /13, /9999 observed"
+        }
+      ],
+      "confidence": "HIGH"
+    }
+  ],
+  "dynamic_elements": [
+    {
+      "element": "Product price and stock status on product cards",
+      "selector": "role=article",
+      "dynamic": true,
+      "reason": "Depends on selected location: without location cards show 'Choose a location for pricing' / 'Select a store for availability' and disabled 'Add to cart'; after selecting store 1 (77002) cards show prices (e.g. $159.00 with struck $179.00), stock ('In Stock', 'Only 7 left') and enabled Add to cart.",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Before location: 'Choose a location for pricing', button 'Add to cart' [disabled]. After Update location 77002: '$159.00' + deletion '$179.00', 'In Stock', 'Only 7 left' (Milwaukee)"
+        },
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/products?limit=8&region_id=1&store_id=1",
+          "observation": "refetch after location change"
+        }
+      ]
+    },
+    {
+      "element": "Product price / stock status per store",
+      "selector": null,
+      "dynamic": true,
+      "reason": "Price and available_quantity differ per store/region; status 'Only N left' when quantity low (observed N<=10), 'Out of Stock' when 0 (product 13 Husky Workbench at Phoenix store 5), else 'In Stock'. E.g. product 1: $159 Houston, $164 Atlanta, $169 Phoenix.",
+      "evidence": [
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/products?region_id=X&store_id=Y",
+          "observation": "Response items[].price{price,sale_price,current_price}, availability{available_quantity,in_stock,status}; values vary per store 1-5"
+        }
+      ]
+    },
+    {
+      "element": "Cart line totals, item count, subtotal and header cart count",
+      "selector": "role=link[name=/^Cart \\(\\d+\\)$/]",
+      "dynamic": true,
+      "reason": "Depend on cart contents (sum of quantities) and on the selected store's prices.",
+      "evidence": [
+        {
+          "type": "browser_interaction",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Cart (2)->(3)->(4)->(2); subtotal $337.97 -> $357.94 -> $318.00; unit price 159 (Houston) vs 169 (Phoenix) via /api/cart"
+        }
+      ]
+    },
+    {
+      "element": "Checkout estimated tax, total and delivery/pickup dates",
+      "selector": null,
+      "dynamic": true,
+      "reason": "Tax depends on fulfillment type/address (Ship to Home Atlanta address $28.30 vs Store Pickup Houston $26.24 on $318 subtotal); dates are relative to current date (pickup Oct 12, 2026 = today, ship Oct 19, 2026, delivery 2026-10-14); Local Delivery availability depends on shipping address region.",
+      "evidence": [
+        {
+          "type": "browser_snapshot",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "Estimated tax $28.30 / Total $346.30 (Ship to Home); $26.24 / $344.24 (Store Pickup)"
+        },
+        {
+          "type": "network",
+          "file": null,
+          "line": null,
+          "method": "GET",
+          "endpoint": "/api/fulfillment/options",
+          "observation": "estimated_date values"
+        }
+      ]
+    },
+    {
+      "element": "Checkout shipping cost and progress for new user",
+      "selector": null,
+      "dynamic": true,
+      "reason": "Ship to Home was Free for $318 subtotal but $9.99 for $2.47 subtotal; Local Delivery enabled ($79, Oct 14) when no out-of-region address; new user has no saved addresses ('You don't have a saved address for this yet.') or cards (new card form shown), and progress steps not marked complete.",
+      "evidence": [
+        {
+          "type": "browser_evaluate",
+          "file": null,
+          "line": null,
+          "method": null,
+          "endpoint": null,
+          "observation": "New account checkout: Subtotal $2.47, Ship to Home $9.99, Estimated tax $0.20, Total $12.66; progress '1 Delivery 2 Billing 3 Payment 4 Review'"
+        }
+      ]
+    }
+  ],
+  "dependencies": [],
+  "baseline": {
+    "screenshot": null,
+    "dom_snapshot": null,
+    "url": null,
+    "console_errors": []
+  }
+}

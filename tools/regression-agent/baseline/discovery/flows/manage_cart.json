@@ -1,0 +1,34 @@
+{
+  "flow_id": "manage_cart",
+  "name": "Update and remove cart items",
+  "importance": "HIGH",
+  "steps": [
+    {
+      "page": "/cart",
+      "action": "Increase quantity -> PATCH, line total + subtotal + header count update"
+    },
+    {
+      "page": "/cart",
+      "action": "Decrease quantity (disabled at 1)"
+    },
+    {
+      "page": "/cart",
+      "action": "Remove item -> line removed, totals update"
+    },
+    {
+      "page": "/cart",
+      "action": "Refresh -> cart persists (server-side, linked to signed-in user)"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "browser_interaction",
+      "file": null,
+      "line": null,
+      "method": null,
+      "endpoint": null,
+      "observation": "Stanley 1->2: $39.94, '4 item(s)' $357.94; after remove + reload: DeWalt only, $318.00, 'Cart (2)'"
+    }
+  ],
+  "confidence": "HIGH"
+}
