@@ -43,7 +43,7 @@ e2e/runs/
 discovery_runs/
 
 # Private planning and documentation
-plan/
+
 docs/
 
 # Logs

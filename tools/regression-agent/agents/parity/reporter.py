@@ -5,12 +5,11 @@ Defect files are shaped like Jira issues so they can be filed automatically late
 
 from __future__ import annotations
 
+import base64
 import json
-import os
 from html import escape
 from pathlib import Path
 from typing import Any
-from urllib.parse import quote
 
 from agents.discovery.contracts.profile import SiteProfile
 from agents.discovery.session import resolve
@@ -49,10 +48,11 @@ def _badge(text: str) -> str:
 
 
 def _img(path: str | None, out_dir: Path, label: str) -> str:
-    if not path:
+    if not path or not Path(path).is_file():
         return f"<div><h4>{escape(label)}</h4><p class='muted'>No screenshot</p></div>"
-    src = quote(os.path.relpath(path, out_dir).replace("\\", "/"))
-    return f'<div><h4>{escape(label)}</h4><img src="{escape(src)}" alt="{escape(label)} screenshot"></div>'
+    # Embedded, so report.html still shows screenshots when opened on its own (e.g. straight from a zip).
+    src = "data:image/png;base64," + base64.b64encode(Path(path).read_bytes()).decode("ascii")
+    return f'<div><h4>{escape(label)}</h4><img src="{src}" alt="{escape(label)} screenshot"></div>'
 
 
 def _ms(value: float | None) -> str:
